@@ -36,6 +36,7 @@ function main() {
         //make our main div
         var mainButDiv = document.createElement("div")
         mainDiv.appendChild(mainButDiv)
+
         for (var topics in data){
 
           //each topics in this list is a topic we have
@@ -87,12 +88,12 @@ function main() {
                   var lessonData = name.split(":")
                   var topic = lessonData[0]
                   var lesson = lessonData[1]
-                  console.log('switching windows')
+                  //console.log('switching windows')
                   ipcRenderer.send("loadLesson()", topic, lesson)
                 }
                 if(data==1){
 
-                  document.getElementById('main').innerHTML = "You don't have this lesson, would you like to download it?"
+                  document.getElementById('main').innerHTML = "You don't have this topic on disk, would you like to download it?"
                   buttonDivs = document.createElement("div")
                   document.body.appendChild(buttonDivs) //need to change this
                   //yes
@@ -102,15 +103,19 @@ function main() {
                   yesButton.addEventListener("click", function(){
                     var downloadLesson = exec("py pythonClient.py")
                     downloadLesson.stdout.on('data', function(data){
-
-                      if(data ==1) {
+                      console.log("data");
+                      if(data == 1) {
                         document.getElementById("main").innerHTML = "There was an error downloading the lessons!"
                       }else {
-                        console.log("data")
+                        document.getElementById("main").innerHTML = "Lesson downloaded, loading the lesson now!"
+                        var lessonData = name.split(":")
+                        var topic = lessonData[0]
+                        var lesson = lessonData[1]
+                        ipcRenderer.send("loadLesson()", topic, lesson);
                       }
                     });
 
-                    downloadLesson.stdin.write("downloadLesson()#"+name)
+                    downloadLesson.stdin.write("downloadLesson()#"+name+"\n")
                   });
                   //no
                   noButton = document.createElement('button')
@@ -127,7 +132,7 @@ function main() {
             button.innerHTML = lessons
             lessonsDiv.appendChild(button)
           }
-          document.getElementById("main").innerHTML = "Manifest"
+          document.getElementById("main").innerHTML = "Topics"
         }
       });
       getManifestData.stdin.write("getManifestData()#none"+"\n")
