@@ -1,0 +1,11 @@
+{
+  "name": "library",
+  "version": "0.5.0",
+  "description": "This is a program designed to provide teaching materials to all, in various subjects.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "THoward02",
+  "license": "ISC"
+}

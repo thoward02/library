@@ -1,0 +1,24 @@
+{
+  "python": {
+      "basics":{
+        "main" : "main.html",
+        "file1" : "pythonBasics.html",
+        "file2" : "pythonFunctions.html",
+        "file3" : "pythonLoops.html"
+      },
+      "discordBot": {
+        "main" : "main.html",
+        "file1" : "gettingYourToken.html",
+        "file2" : "writingFirstBot.html",
+        "file3" : "understandingAsync.html"
+      }
+    },
+    "javascript": {
+      "basics": {
+        "file1": "jsBasics.html",
+        "file2" : "editingHtml.html",
+        "file3" : "jsFunctions.html",
+        "file4" : "jsLoops.html"
+      },
+    }
+}
