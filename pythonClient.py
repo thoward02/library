@@ -120,11 +120,10 @@ class commands:
         try:
             for items in jsonData[topic][lesson]:
                 if(jsonData[topic][lesson][items] != None):
-                    print(self.url+str(jsonData[topic][lesson][items]))
                     self.path2 = self.path + str(jsonData[topic][lesson][items])
-                    print(self.path2)
+
                     self.file = urllib.request.urlretrieve(self.url+str(jsonData[topic][lesson][items]), self.path2)
-            return jsonData[topic][lesson]["main"]
+            return 0
         except:
             return 1
 class proc:
@@ -157,7 +156,7 @@ class proc:
             self.output = self.com.checkLesson(self.args)
             return self.output
         if(self.command=="downloadLesson()"):
-            #downloadLesson()
+            #downloadLesson()#python:basics
             self.com = commands()
             self.output = self.com.downloadLesson(self.args)
             return self.output

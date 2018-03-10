@@ -15,11 +15,11 @@
     },
     "javascript": {
       "basics": {
-        "main" : "main.html", 
+        "main" : "main.html",
         "file1": "jsBasics.html",
         "file2" : "editingHtml.html",
         "file3" : "jsFunctions.html",
         "file4" : "jsLoops.html"
-      },
+      }
     }
 }
