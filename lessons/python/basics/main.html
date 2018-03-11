@@ -7,15 +7,17 @@
 
 <body>
   <div id="top-border">
-    <h>Library</h>
+    <h id="title">Library</h>
+    <button id="mainMenu">Main Menu</button>
   </div>
     <div class="body">
       <div class="info">
         <p> Welcome to the Python Basic section! </p>
+        <p style="font-size:14px;">This is where you can select the lessons you'd like to open</p>
       </div>
       <div class='rightSide' id="lessons">
         <p id="lessons"> Click on a lesson to load it! </p>
-        <button id="mainMenu">Main Menu</button>
+        <hr class"rightSideLines"> </hr>
       </div>
   </div>
   <div id='bottom-border'></div>
@@ -29,7 +31,26 @@
   text-align: center;
   font-size: 40px;
   -webkit-app-region: drag;
-  -webkit-user-select:none;
+
+}
+#mainMenu {
+  float: left;
+  height: 100%;
+  border: none;
+  font-size: 20px;
+  background-color: #1e3137;
+  color: #337d99;
+  -webkit-app-region: no-drag;
+
+}
+#mainMenu:hover {
+  background-color: #337d99;
+  color: #1e3137;
+
+}
+#title {
+  text-align: center;
+  padding-right: 110px;
 }
 #bottom-border{
   width: 100%;
@@ -50,42 +71,56 @@
 }
 #mainCont{
   margin-top: 5%;
-  margin-right: 8%;
   float: right;
 }
-
 .info {
   width: 50%;
   float: left;
   margin-top: 0px;
   height: 100%;
   background-color:#204d5e;
-
+  font-size: 22px;
+  text-align: center;
 }
-
-
 .body {
-
   height: 85%;
   margin-top: 0px;
-
   background:  linear-gradient(0deg, rgba(15,110,112,.9) , rgba(9,69,70,.7)  70%);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .leftBreak {
   border-top-color: #183a47;
   border: 0;
-  border-top: 5px solid;
   width:  80%;
   padding-left: 10px;
 }
 .rightSide {
-  margin: 0;
-  border-top-color: black;
-  border: 0;
-  border-top: 0.5px solid;
+  margin-right: 200px;
+  text-align: center;
+  float: right;
+  }
+.buttons {
+  color: #337d99;
+  font-size: 16px;
+  padding: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: none;
+  background-color: #1e3137;
+  margin: 5px;
+  width: 70%;
 }
+.buttons:hover {
+  background-color: #337d99;
+  color: #1e3137;
+}
+.rightSideLines {
+  width: 200px;
+  background-color: #1e3137;
+  border: none;
+  height: 100px;
 
+}
 body {
   color: #337d99;
   margin : 0px;

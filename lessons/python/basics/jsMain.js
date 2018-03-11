@@ -18,11 +18,13 @@ function main(){
   console.log(lessons[1])
   for (var items in lessons) {
     //lessons[items] -- Gives us the var lessonx where x is the loop number
+    var containmentDiv = document.createElement('div')
+    document.getElementById("lessons").appendChild(containmentDiv)
     var lessonButton = document.createElement("button")
     lessonButton.id = lessons[items][1]
     lessonButton.innerHTML = lessons[items][0]
-    
-    document.getElementById("lessons").appendChild(lessonButton)
+    lessonButton.className = "buttons"
+    containmentDiv.appendChild(lessonButton)
     //There is a billy joel concert on october the 13 in Salem NC.... I wonder if I can go, always did enjoy Piano Man
     //WHEN I WORE A YOUNGER MANS CLOTHES sorry im bored xd
     lessonButton.addEventListener('click', function(y, name=this.id){

@@ -140,9 +140,7 @@ function main() {
             });
             button.innerHTML = lessons
             buttonDiv.appendChild(button)
-            var borderLine = document.createElement("hr")
-            borderLine.className = "rightSide"
-            buttonDiv.appendChild(borderLine);
+
           }
           document.getElementById("main").innerHTML = "Topics"
           document.getElementById('details').innerHTML = "Click on a topic to look at its avalible lessons"
