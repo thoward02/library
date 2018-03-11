@@ -11,7 +11,8 @@ function main() {
     if(data==1) {
       // There is no manifest implying either the user deleted it like a dick (or is forcing the program to reinstall it) or this is a first run of the Program
       // lets just tell the user there is no manifest and ask if he wants to download it
-      document.getElementById('main').innerHTML = "You don't seem to have a manifest, let us download one from our servers!";
+      document.getElementById('details').innerHTML = "You don't seem to have a manifest, let us download one from our servers!";
+      document.getElementById('main').innerHTML = "Manifest";
       checkForLessons.stdout.end(); //End the old pythonClient since we're done with it ((we ended it on the python side, but we're gonna do it again juuuuuust to make sure))
       var downloadManifest = exec("py pythonClient.py");
       downloadManifest.stdout.on("data", function(data){
@@ -19,14 +20,15 @@ function main() {
           location.reload();
         }
         if(data==1){
-          document.getElementById("main").innerHTML = "Download Failed"
+          document.getElementById("main").innerHTML = "Oh no"
+          document.getElementById("details").innerHTML = "We failed to download the manifest"
         }
       });
       downloadManifest.stdin.write("downloadManifest()#none"+"\n")
     }
     if(data==0){
       checkForLessons.stdout.end();
-      document.getElementById("main").innerHTML = "Loading the Manifest"
+      document.getElementById("details").innerHTML = "Loading the Manifest"
       var getManifestData = exec("py pythonClient.py");
       getManifestData.stdout.on('data', function(data){
 
@@ -51,6 +53,7 @@ function main() {
           topicDiv.appendChild(button);
           button.innerHTML = topics
           button.id = topics
+          button.className = "buttons"
           var lessonsDiv = document.createElement("div")
           lessonsDiv.id = topics+"lessonsDiv"
           lessonsDiv.style.display = "none"
@@ -74,8 +77,12 @@ function main() {
           //Add the lessons buttons
 
           for (var lessons in data[topics]) {
+            var buttonDiv = document.createElement('div')
+            lessonsDiv.appendChild(buttonDiv)
+            
             var button = document.createElement("button")
             button.id = topics+":"+lessons
+            button.className = "lessonButtons"
             button.addEventListener('click', function(x, name = this.id){
               document.getElementById("mainCont").style.visibility = "hidden" // So we can load the new page, and if they choose to go back we can re pull it up\
 
@@ -95,10 +102,11 @@ function main() {
 
                   document.getElementById('main').innerHTML = "You don't have this topic on disk, would you like to download it?"
                   buttonDivs = document.createElement("div")
-                  document.body.appendChild(buttonDivs) //need to change this
+                  document.getElementById('body').appendChild(buttonDivs) //need to change this
                   //yes
                   yesButton = document.createElement('button')
                   yesButton.innerHTML = "Yes"
+                  yesButton.className = "buttons"
                   buttonDivs.appendChild(yesButton)
                   yesButton.addEventListener("click", function(){
                     var downloadLesson = exec("py pythonClient.py")
@@ -120,7 +128,8 @@ function main() {
                   //no
                   noButton = document.createElement('button')
                   noButton.innerHTML = "No"
-                  buttonDivs.appendChild(noButton)
+                  document.getElementById('body').appendChild(noButton)
+                  noButton.className = "buttons"
                   noButton.addEventListener("click", function(){
                     location.reload(); //Just sends us back to the start
                   });
@@ -130,9 +139,13 @@ function main() {
               checkForLesson.stdin.write("checkForLesson()#"+name+"\n");
             });
             button.innerHTML = lessons
-            lessonsDiv.appendChild(button)
+            buttonDiv.appendChild(button)
+            var borderLine = document.createElement("hr")
+            borderLine.className = "rightSide"
+            buttonDiv.appendChild(borderLine);
           }
           document.getElementById("main").innerHTML = "Topics"
+          document.getElementById('details').innerHTML = "Click on a topic to look at its avalible lessons"
         }
       });
       getManifestData.stdin.write("getManifestData()#none"+"\n")

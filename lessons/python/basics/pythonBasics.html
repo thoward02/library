@@ -3,10 +3,69 @@
 <head>
   <title> Python  Basics </title>
   <!--Back button script -->
-  <script type = "text/javascript">var mainWindow = "main.html";document.addEventListener('DOMContentLoaded', function(){document.getElementById('backButton').addEventListener('click', function(){window.location=mainWindow;})}); </script>
+  <script type = "text/javascript">var mainWindow = "main.html";var nextLesson = "pythonFunctions.html";document.addEventListener('DOMContentLoaded', function(){document.getElementById('backButton').addEventListener('click', function(){window.location=mainWindow;}); document.getElementById('nextButton').addEventListener('click', function(){window.location = nextLesson;}); }); </script>
 </head>
 <body>
   <p> Here are the basics for learning the language Python </p>
+
+  <div id='vars'>
+    <h class='header'> Variables </h>
+    <p> Variables are a way to store data within python. It tells your computer that hey this word has data inside of it. </p>
+    <code> x = "hello" </code>
+    <p> This is how python states a variable. This code lines tell the system that "X" has the word "hello" in it. Now we can say x, and the system will tell us "hello". This is how variables work, they store information, so that it may be used later. </p>
+    <p> There are 3 different types of variables </p>
+    <h> Strings </h>
+    <p> Strings are words, and letters. When we declare a string within python we have to wrap it up in "", or the system won't understand and toss an error. For example the code above is a string in a variable, as notated by the "" </p>
+    <h> Ints </h>
+    <p> In the coding world these are refered to as ints, but their real name is integers. (It means numbers) This is shown in the code below. </p>
+    <code> x = 10 </code>
+    <p> Here we have set x to equal the number 10. We don't have to wrap it in "" because it is not a string. </p>
+    <h> Boolean </h>
+    <p> A boolean means true or false. That's it. Easy right? </p>
+    <code> x = True </code>
+    <p> Now since we are in python it is mandatory that you capitalize the T in true and F in false, or the system won't know it is a boolean. </p>
+
+    <p> But how do we access variables? The easiest way todo this is by using the "print()" function. What this does is it prints what ever is inbetween () to the console! </p>
+    <code> print(x) </code>
+    <p> We can print regular strings by putting words in a "" within the () of print. For example: </p>
+    <code>print("Hows it flowin") </code>
+    <p> You can also print ints without wrapping them in "", but it doesn't matter</p>
+    <h class='header'> Conditionals </h>
+    <p> None of this matters though without Condentionals. A condentional sets a condition for the program to meet, for example what do we do if we want to check if x equals the word "hey", and if so print "hello"? </p>
+    <p> Well we would do this: </p>
+<!-- Why use pre taylor? Why mess up your formating of indenting in html? Well, the pre and shit format is to make the code blocks indent right. -->
+<pre>
+<code>
+x = "hey"
+if(x=="hey"):
+  print("hello")
+</code>
+</pre
+    <p> First we set x to equal hey, then we use an if statement to check if x equals hey or not. Take careful note of how we do this. </p>
+    <p> We state <code>if(variable==whatWeWannaCheck):</code> <code>if()</code> tells the program that we're doing a if statement here. <code>variable</code> is the variable we are checking, and <code>whatWeWannaCheck</code> is the condition we are looking to meet. It can be a boolean, string, int, or even another variable. Then we add <code>:</code> at the end to tell the program that the next INDENTED lines are to be ran if the condition is met.</p>
+    <p> Now indented is in caps because indentation is incredibly important in python. Lets take a look at a piece of code to prove this. </p>
+<pre>
+<code>
+x = 1
+if(x==1):
+  print("hey that is right!")
+if(x==2):
+  print("Hey that is wrong...")
+</code>
+</pre>
+    <p> The indentions here tell the program that the prints belong to a specific if statement... so what happens if we do not indent?</p>
+</pre>
+<code>
+x = 1
+if(x==1):
+print("hey that is right!")
+if(x==2):
+print("Hey that is wrong!")
+</code>
+</pre>
+    <p> Now this code just prints hey thats right and wrong! What happens if this is the code for a password checker? Does this imply that your password is correct and incorrect? See how important indents are? </p>
+  </div>
   <button id='backButton'>Back</button>
+  <button id='nextButton'>Next Lesson</button>
 <body>
 </html>
