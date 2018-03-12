@@ -6,9 +6,11 @@
   <script type = "text/javascript">var mainWindow = "main.html";var nextLesson = "pythonFunctions.html";document.addEventListener('DOMContentLoaded', function(){document.getElementById('backButton').addEventListener('click', function(){window.location=mainWindow;}); document.getElementById('nextButton').addEventListener('click', function(){window.location = nextLesson;}); }); </script>
 </head>
 <body>
-  <p> Here are the basics for learning the language Python </p>
-
-  <div id='vars'>
+  <div id="top-border">
+    <h id="title">Library</h>
+  </div>
+  <div id='Main'>
+    <p id='headTitle'> Basics of Python </p>
     <h class='header'> Variables </h>
     <p> Variables are a way to store data within python. It tells your computer that hey this word has data inside of it. </p>
     <code> x = "hello" </code>
@@ -65,7 +67,42 @@ print("Hey that is wrong!")
 </pre>
     <p> Now this code just prints hey thats right and wrong! What happens if this is the code for a password checker? Does this imply that your password is correct and incorrect? See how important indents are? </p>
   </div>
+  <div id='bottom-border'></div>
   <button id='backButton'>Back</button>
   <button id='nextButton'>Next Lesson</button>
+  <style>
+  #main {
+    width: 90%;
+    background-color: #265e73;
+    margin: 50px;
+
+    padding-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #headTitle {
+    text-align: center;
+    padding: right: 10px;
+  }
+  #top-border {
+    width: 100%;
+    height: 50px;
+    background-color: #1e3137;
+    color: #337d99;
+    text-align: center;
+    font-size: 40px;
+    -webkit-app-region: drag;
+    -webkit-user-select:none;
+  }
+  #bottom-border{
+    width: 100%;
+    height: 70px;
+    background-color: #1e3137;
+
+  }
+  body {
+    color: white;
+    background-color: #1e3137;
+  }
+  </style>
 <body>
 </html>
