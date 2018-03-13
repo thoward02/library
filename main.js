@@ -9,7 +9,7 @@ const path = require('path');
 var mainWindow = null
 
 const createMainWindow = () => {
-  mainWindow = new BrowserWindow({width: 1000, height: 700, frame: false})
+  mainWindow = new BrowserWindow({width: 1000, height: 700, frame: false, resizable: false })
   console.log("[-- Started --]");
   mainWindow.loadURL(require('url').format({
     pathname: path.join(__dirname, 'main.html'), //Our main page where we're gonna load data etc etc
