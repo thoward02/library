@@ -7,26 +7,30 @@
   <script type="text/javascript">
     //const {ipcRenderer} = require('electron');
     function addButtons(){
-      document.getElementById('exit').addEventListener('click', function(){ipcRenderer.send('exit()');}); //Exit
+      document.getElementById('exit').addEventListener('click', function(){console.log('fuck');ipcRenderer.send('exit()');}); //Exit
       document.getElementById('minimize').addEventListener('click', function(){ipcRenderer.send('minimize()');}); //Min
     }
     document.addEventListener('DOMContentLoaded', function(){
       addButtons();
+      console.log('-webkit-app-region: no-drag !important;')
     })
   </script>
 
 </head>
 
 <body>
-  <div id="sysButs">
-    <svg id="exit" class= "systemButtons"height="16" width="16">
-      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="red" />
-    </svg>
-    <svg id="minimize" class= "systemButtons"height="16" width="16">
-      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="yellow" />
-    </svg>
-  </div>
+
+
+
   <div id="top-border">
+      <div id="topButtons">
+      <svg id="exit" class= "systemButtons"height="16" width="16">
+        <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="red" />
+      </svg>
+      <svg id="minimize" class= "systemButtons"height="16" width="16">
+        <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="yellow" />
+      </svg>
+    </div>
     <h>Library</h>
   </div>
   <div class='body'id="body">
@@ -41,29 +45,38 @@
   </div>
   <div id='bottom-border'></div>
   <style>
-  #sysButs {
-    height: 20px;
+  #topButtons {
+    position: sticky;
+    float: top;
     width: 100%;
-    padding-top: 5px;
-    background-color: #1e3137;
-    position: fixed;
+    height: 25px;
   }
   .systemButtons {
+
+    position: sticky;
+    position: -webkit-sticky;
+    margin-top: 2px;
+    padding-top: 10px;
+    -webkit-app-region: no-drag !important;
     float: left;
     padding-left: 5px;
   }
   #top-border {
+    top: 0;
+    position: sticky;
     width: 100%;
-    padding-top: 20px;
     height: 50px;
     background-color: #1e3137;
     color: #337d99;
     text-align: center;
     font-size: 40px;
+    padding-bottom: 40px;
     -webkit-app-region: drag;
-    -webkit-user-select:none;
+
   }
   #bottom-border{
+    position: sticky;
+    bottom: 0;
     width: 100%;
     height: 70px;
     background-color: #1e3137;
@@ -121,6 +134,7 @@
     padding: 10px;
     width: 400px;
     margin-top: 5px;
+    margin-left: 70px;
     margin-bottom: 15px;
     border-color: #337d99;
     text-align: center;
