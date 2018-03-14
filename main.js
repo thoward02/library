@@ -9,7 +9,7 @@ const path = require('path');
 var mainWindow = null
 
 const createMainWindow = () => {
-  mainWindow = new BrowserWindow({width: 1000, height: 700, frame: false, resizable: false })
+  mainWindow = new BrowserWindow({width: 1000, height: 705, frame: false, resizable: false })
   console.log("[-- Started --]");
   mainWindow.loadURL(require('url').format({
     pathname: path.join(__dirname, 'main.html'), //Our main page where we're gonna load data etc etc
@@ -36,6 +36,15 @@ ipcMain.on('main()', (event) => {
     slashes: true
   }));
 });
+//System Functions
+ipcMain.on('exit()', (event) => {
+  app.quit();
+});
+ipcMain.on('minimize()', (event) => {
+  mainWindow.minimize();
+});
+
+
 app.on('ready', createMainWindow);
 app.on('window-all-closed', function(){
   if(process.platform !== 'darwin') {
