@@ -3,37 +3,83 @@
 <head>
   <title> --Python Main -- </title>
   <script type='text/javascript' src='jsMain.js'></script>
+  <script type="text/javascript">
+    //const {ipcRenderer} = require('electron');
+    function addButtons(){
+      document.getElementById('exit').addEventListener('click', function(){console.log('fuck');ipcRenderer.send('exit()');}); //Exit
+      document.getElementById('minimize').addEventListener('click', function(){ipcRenderer.send('minimize()');}); //Min
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      addButtons();
+      console.log('-webkit-app-region: no-drag !important;')
+    })
+  </script>
+
 </head>
 
 <body>
   <div id="top-border">
+    <div id="topButtons">
+    <svg id="exit" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="red" />
+    </svg>
+    <svg id="minimize" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="yellow" />
+    </svg>
+  </div>
     <h id="title">Library</h>
-    <button id="mainMenu">Main Menu</button>
+
   </div>
     <div class="body">
         <p id="titleBanner"> Welcome to the Python Basic section! </p>
         <p id="titleBanner">Here you can find the basic lessons upon the programming language Python!</p>
 
       <div class='rightSide' id="lessons">
-        <p id="lessons"> Click on a lesson to load it! </p>
+        <p> Click on a lesson to load it! </p>
 
       </div>
   </div>
-  <div id='bottom-border'></div>
+  <div id='bottom-border'><button id="mainMenu">Main Menu</button></div>
 <style>
+#topButtons {
+  position: sticky;
+  float: top;
+  width: 100%;
+  height: 25px;
+}
+.systemButtons {
 
+  position: sticky;
+  position: -webkit-sticky;
+  margin-top: 2px;
+  padding-top: 10px;
+  -webkit-app-region: no-drag !important;
+  float: left;
+  padding-left: 5px;
+}
 #top-border {
+  top: 0;
+  position: sticky;
   width: 100%;
   height: 50px;
   background-color: #1e3137;
   color: #337d99;
   text-align: center;
   font-size: 40px;
+  padding-bottom: 40px;
   -webkit-app-region: drag;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#bottom-border{
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #1e3137;
+
 }
 #mainMenu {
-  float: left;
+
   height: 100%;
   border: none;
   font-size: 20px;
@@ -51,13 +97,13 @@
   color: #1e3137;
   text-align: center;
   margin-top: 0px;
-  padding-top: 10px;
+  padding-top: 20px;
   font-size: 24px;
   height: 10px;
 }
 #title {
   text-align: center;
-  padding-right: 110px;
+  padding-right: 30px;
 }
 #bottom-border{
   width: 100%;
@@ -73,6 +119,7 @@
   padding-top: 5%;
 }
 #lessons {
+  padding-top: 10px;
   margin-top: 10px;
   color: #62c1c3;
   text-align: center;
@@ -103,7 +150,25 @@
   background-color: #337d99;
   color: #1e3137;
 }
+.vertical.scrollbar {
+  height: 480px !important;
+}
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #1e3137;
+}
 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #487684;
+}
+
+::-webkit-scrollbar-thumb {
+
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
 body {
   color: #337d99;
   margin : 0px;
