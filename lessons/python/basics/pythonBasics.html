@@ -4,9 +4,29 @@
   <title> Python  Basics </title>
   <!--Back button script -->
   <script type = "text/javascript">var mainWindow = "main.html";var nextLesson = "pythonFunctions.html";document.addEventListener('DOMContentLoaded', function(){document.getElementById('backButton').addEventListener('click', function(){window.location=mainWindow;}); document.getElementById('nextButton').addEventListener('click', function(){window.location = nextLesson;}); }); </script>
+  <!-- System buttons -->
+  <script type="text/javascript">
+    //const {ipcRenderer} = require('electron');
+    function addButtons(){
+      document.getElementById('exit').addEventListener('click', function(){console.log('fuck');ipcRenderer.send('exit()');}); //Exit
+      document.getElementById('minimize').addEventListener('click', function(){ipcRenderer.send('minimize()');}); //Min
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      addButtons();
+      console.log('-webkit-app-region: no-drag !important;')
+    })
+  </script>
 </head>
 <body>
   <div id="top-border">
+    <div id="topButtons">
+    <svg id="exit" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="red" />
+    </svg>
+    <svg id="minimize" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="yellow" />
+    </svg>
+  </div>
     <h id="title">Library</h>
   </div>
   <div id='Main'>
@@ -42,7 +62,7 @@ x = "hey"
 if(x=="hey"):
   print("hello")
 </code>
-</pre
+</pre>
     <p> First we set x to equal hey, then we use an if statement to check if x equals hey or not. Take careful note of how we do this. </p>
     <p> We state <code>if(variable==whatWeWannaCheck):</code> <code>if()</code> tells the program that we're doing a if statement here. <code>variable</code> is the variable we are checking, and <code>whatWeWannaCheck</code> is the condition we are looking to meet. It can be a boolean, string, int, or even another variable. Then we add <code>:</code> at the end to tell the program that the next INDENTED lines are to be ran if the condition is met.</p>
     <p> Now indented is in caps because indentation is incredibly important in python. Lets take a look at a piece of code to prove this. </p>
@@ -67,38 +87,86 @@ print("Hey that is wrong!")
 </pre>
     <p> Now this code just prints hey thats right and wrong! What happens if this is the code for a password checker? Does this imply that your password is correct and incorrect? See how important indents are? </p>
   </div>
-  <div id='bottom-border'></div>
-  <button id='backButton'>Back</button>
+  <div id='bottom-border'><button id='backButton'>Back</button>
   <button id='nextButton'>Next Lesson</button>
+  </div>
+
   <style>
   #main {
     width: 90%;
     background-color: #265e73;
     margin: 50px;
-
     padding-top: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #Main p {
+    padding-left: 40px;
   }
   #headTitle {
     text-align: center;
     padding: right: 10px;
   }
+  #topButtons {
+    position: sticky;
+    float: top;
+    width: 100%;
+    height: 25px;
+  }
+  .systemButtons {
+
+    position: sticky;
+    position: -webkit-sticky;
+    margin-top: 2px;
+    padding-top: 10px;
+    -webkit-app-region: no-drag !important;
+    float: left;
+    padding-left: 5px;
+  }
   #top-border {
+    top: 0;
+    position: sticky;
     width: 100%;
     height: 50px;
     background-color: #1e3137;
     color: #337d99;
     text-align: center;
     font-size: 40px;
+    padding-bottom: 40px;
     -webkit-app-region: drag;
-    -webkit-user-select:none;
+
   }
   #bottom-border{
+    position: sticky;
+    bottom: 0;
     width: 100%;
     height: 70px;
     background-color: #1e3137;
-
   }
+  #nextButton, #backButton  {
+    margin:0;
+    width: 100px;
+    height : 100%;
+    font-size: 15px;
+  }
+  .vertical.scrollbar {
+    height: 480px !important;
+  }
+  ::-webkit-scrollbar {
+      width: 12px;
+      background-color: #1e3137;
+  }
+
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      background-color: #487684;
+  }
+
+  ::-webkit-scrollbar-thumb {
+
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
   body {
     color: white;
     background-color: #1e3137;
