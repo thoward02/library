@@ -31,16 +31,16 @@
 
   </div>
     <div class="body">
+      <div id="titlebars">
         <p id="titleBanner"> Welcome to the Python Basic section! </p>
         <p id="titleBanner">Here you can find the basic lessons upon the programming language Python!</p>
-
+      </div>
       <div class='rightSide' id="lessons">
-        <p> Click on a lesson to load it! </p>
-
       </div>
   </div>
   <div id='bottom-border'><button id="mainMenu">Main Menu</button></div>
 <style>
+
 #topButtons {
   position: sticky;
   float: top;
@@ -78,8 +78,12 @@
   background-color: #1e3137;
 
 }
+#titlebars {
+  background-color: #204d5e;
+  width: 100%;
+  height: 25%;
+}
 #mainMenu {
-
   height: 100%;
   border: none;
   font-size: 20px;
@@ -89,12 +93,12 @@
 
 }
 #mainMenu:hover {
-  background-color: #337d99;
-  color: #1e3137;
+  background-color: #204d5e;
+  
 
 }
 #titleBanner {
-  color: #1e3137;
+  color: #337d99;
   text-align: center;
   margin-top: 0px;
   padding-top: 20px;
@@ -130,7 +134,7 @@
 .body {
   height: 85%;
   margin-top: 0px;
-  background:  linear-gradient(0deg, rgba(15,110,112,.9) , rgba(9,69,70,.7)  70%);
+  background-color:  #337d99;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -147,8 +151,7 @@
   width: 70%;
 }
 .buttons:hover {
-  background-color: #337d99;
-  color: #1e3137;
+  background-color: #204d5e;
 }
 .vertical.scrollbar {
   height: 480px !important;

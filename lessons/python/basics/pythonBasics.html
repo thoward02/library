@@ -32,122 +32,175 @@
   <div id='Main'>
     <p id='headTitle'> Basics of Python </p>
     <h class='header'> Variables </h>
+    <hr class='leftBreak'>
     <p> Variables are a way to store data within python. It tells your computer that hey this word has data inside of it. </p>
-    <code> x = "hello" </code>
-    <p> This is how python states a variable. This code lines tell the system that "X" has the word "hello" in it. Now we can say x, and the system will tell us "hello". This is how variables work, they store information, so that it may be used later. </p>
+    <code class="blockCode"> x = "hello" </code>
+    <p> This is how python states a variable. This code class="blockCode" lines tell the system that "X" has the word "hello" in it. Now we can say x, and the system will tell us "hello". This is how variables work, they store information, so that it may be used later. </p>
     <p> There are 3 different types of variables </p>
-    <h> Strings </h>
-    <p> Strings are words, and letters. When we declare a string within python we have to wrap it up in "", or the system won't understand and toss an error. For example the code above is a string in a variable, as notated by the "" </p>
-    <h> Ints </h>
-    <p> In the coding world these are refered to as ints, but their real name is integers. (It means numbers) This is shown in the code below. </p>
-    <code> x = 10 </code>
+    <h class='header'> Strings </h>
+
+    <hr class='leftBreak'>
+    <p> Strings are words, and letters. When we declare a string within python we have to wrap it up in "", or the system won't understand and toss an error. For example the code class="blockCode" above is a string in a variable, as notated by the "" </p>
+    <h class='header'> Ints </h>
+    <hr class='leftBreak'>
+    <p> In the coding world these are refered to as ints, but their real name is integers. (It means numbers) This is shown in the code class="blockCode" below. </p>
+    <code class="blockCode"> x = 10 </code>
     <p> Here we have set x to equal the number 10. We don't have to wrap it in "" because it is not a string. </p>
-    <h> Boolean </h>
+    <h class='header'> Boolean </h>
+    <hr class='leftBreak'>
     <p> A boolean means true or false. That's it. Easy right? </p>
-    <code> x = True </code>
+    <code class="blockCode"> x = True </code>
     <p> Now since we are in python it is mandatory that you capitalize the T in true and F in false, or the system won't know it is a boolean. </p>
 
     <p> But how do we access variables? The easiest way todo this is by using the "print()" function. What this does is it prints what ever is inbetween () to the console! </p>
-    <code> print(x) </code>
+    <code class="blockCode"> print(x) </code>
     <p> We can print regular strings by putting words in a "" within the () of print. For example: </p>
-    <code>print("Hows it flowin") </code>
+    <code class="blockCode">print("Hows it flowin") </code>
     <p> You can also print ints without wrapping them in "", but it doesn't matter</p>
     <h class='header'> Conditionals </h>
+    <hr class='leftBreak'>
     <p> None of this matters though without Condentionals. A condentional sets a condition for the program to meet, for example what do we do if we want to check if x equals the word "hey", and if so print "hello"? </p>
     <p> Well we would do this: </p>
-<!-- Why use pre taylor? Why mess up your formating of indenting in html? Well, the pre and shit format is to make the code blocks indent right. -->
+<!-- Why use pre taylor? Why mess up your formating of indenting in html? Well, the pre and shit format is to make the code class="blockCode" blocks indent right. -->
+<code class="blockCode">
 <pre>
-<code>
 x = "hey"
 if(x=="hey"):
   print("hello")
-</code>
 </pre>
+</code>
     <p> First we set x to equal hey, then we use an if statement to check if x equals hey or not. Take careful note of how we do this. </p>
-    <p> We state <code>if(variable==whatWeWannaCheck):</code> <code>if()</code> tells the program that we're doing a if statement here. <code>variable</code> is the variable we are checking, and <code>whatWeWannaCheck</code> is the condition we are looking to meet. It can be a boolean, string, int, or even another variable. Then we add <code>:</code> at the end to tell the program that the next INDENTED lines are to be ran if the condition is met.</p>
-    <p> Now indented is in caps because indentation is incredibly important in python. Lets take a look at a piece of code to prove this. </p>
+    <p> We do this by stating <code class="singleCode">if(variable==whatWeWannaCheck):</code>.</p>
+    <p><code class="singleCode">if()</code> tells the program that we're doing a if statement here. <code class="singleCode">variable</code> is the variable we are checking, and <code class="singleCode">whatWeWannaCheck</code> is the condition we are looking to meet. It can be a boolean, string, int, or even another variable. Then we add <code class="singleCode">:</code> at the end to tell the program that the next INDENTED lines are to be ran if the condition is met.</p>
+    <p> Now indented is in caps because indentation is incredibly important in python. Lets take a look at a piece of code class="blockCode" to prove this. </p>
+<code class="blockCode">
 <pre>
-<code>
 x = 1
 if(x==1):
   print("hey that is right!")
 if(x==2):
   print("Hey that is wrong...")
+</pre>
 </code>
-</pre>
     <p> The indentions here tell the program that the prints belong to a specific if statement... so what happens if we do not indent?</p>
-</pre>
-<code>
+
+
+<code class="blockCode">
+<pre>
 x = 1
 if(x==1):
 print("hey that is right!")
 if(x==2):
 print("Hey that is wrong!")
-</code>
 </pre>
-    <p> Now this code just prints hey thats right and wrong! What happens if this is the code for a password checker? Does this imply that your password is correct and incorrect? See how important indents are? </p>
+</code>
+  <p> Now this code just prints hey thats right and wrong! What happens if this is the code for a password checker? Does this imply that your password is correct and incorrect? See how important indents are? </p>
   </div>
-  <div id='bottom-border'><button id='backButton'>Back</button>
-  <button id='nextButton'>Next Lesson</button>
+  <div id='bottom-border'>
+    <button id='backButton'>Back</button>
+    <button id='nextButton'>Next Lesson</button>
   </div>
 
   <style>
-  #main {
-    width: 90%;
-    background-color: #265e73;
-    margin: 50px;
-    padding-top: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  #Main p {
-    padding-left: 40px;
-  }
-  #headTitle {
-    text-align: center;
-    padding: right: 10px;
-  }
-  #topButtons {
-    position: sticky;
-    float: top;
-    width: 100%;
-    height: 25px;
-  }
-  .systemButtons {
+    #title {
+      text-align:center;
+      margin-right: 3%;
+    }
+    #headTitle {
+      font-size: 25px;
+      font-weight: bold;
+    }
+    #main {
+      width: 90%;
+      background-color: #265e73;
+      margin: 50px;
+      padding-top: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      padding-bottom: 20px;
+    }
+    #Main p {
+      display: block;
 
-    position: sticky;
-    position: -webkit-sticky;
-    margin-top: 2px;
-    padding-top: 10px;
-    -webkit-app-region: no-drag !important;
-    float: left;
-    padding-left: 5px;
-  }
-  #top-border {
-    top: 0;
-    position: sticky;
-    width: 100%;
-    height: 50px;
-    background-color: #1e3137;
-    color: #337d99;
-    text-align: center;
-    font-size: 40px;
-    padding-bottom: 40px;
-    -webkit-app-region: drag;
+    }
+    #headTitle {
+      text-align: center;
+      padding: right: 10px;
+    }
+    #topButtons {
+      position: sticky;
+      float: top;
+      width: 100%;
+      height: 25px;
+    }
+    .systemButtons {
+      position: sticky;
+      position: -webkit-sticky;
+      margin-top: 2px;
+      padding-top: 10px;
+      -webkit-app-region: no-drag !important;
+      float: left;
+      padding-left: 5px;
+    }
+    #top-border {
+      top: 0;
+      position: sticky;
+      width: 100%;
+      height: 50px;
+      background-color: #1e3137;
+      color: #337d99;
+      text-align: center;
+      font-size: 40px;
+      padding-bottom: 40px;
+      -webkit-app-region: drag;
 
-  }
-  #bottom-border{
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    height: 70px;
-    background-color: #1e3137;
-  }
-  #nextButton, #backButton  {
-    margin:0;
-    width: 100px;
-    height : 100%;
-    font-size: 15px;
-  }
+    }
+    #bottom-border{
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      height: 70px;
+      background-color: #1e3137;
+    }
+    #nextButton, #backButton  {
+      position: sticky;
+      background-color: inherit;
+      border: 0;
+      margin-left: 0;
+      width: 100px;
+      height : 100%;
+      font-size: 15px;
+      color: #337d99;
+    }
+    #nextButton:hover, #backButton:hover {
+      background-color: #265e73;
+    }
+    .header {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .leftBreak {
+      border-top-color: #183a47;
+      border: 0;
+      border-top: 5px solid;
+      width:  5%;
+      padding-left: 5px;
+      display: block;
+      float: left;
+    }
+
+    .blockCode {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin-right: 40px;
+        margin-left: 40px;
+        min-height: 10px;
+        display: block;
+        background-color: #1e3137;
+        color: #337d99;
+      }
+      .singleCode {
+      background-color: #1e3137;
+      color: #337d99;
+      }
   .vertical.scrollbar {
     height: 480px !important;
   }
@@ -167,9 +220,17 @@ print("Hey that is wrong!")
       border-radius: 10px;
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     }
+
   body {
-    color: white;
-    background-color: #1e3137;
+    margin: 0px;
+    color: #45a5ca;
+    background-color: #337d99;
+  }
+  code, p, h {
+      margin-left: 10px;
+  }
+  code {
+      padding-left: 2px;
   }
   </style>
 <body>
