@@ -13,8 +13,7 @@
     }
     document.addEventListener('DOMContentLoaded', function(){
       addButtons();
-      console.log('-webkit-app-region: no-drag !important;')
-    })
+    });
   </script>
 </head>
 <body>
@@ -95,6 +94,23 @@ print("Hey that is wrong!")
 </pre>
 </code>
   <p> Now this code just prints hey thats right and wrong! What happens if this is the code for a password checker? Does this imply that your password is correct and incorrect? See how important indents are? </p>
+  <p> You can also add comments into your code using <code class='singleCode'>#</code> For example:</p>
+<code class='blockCode'>
+<pre>
+print('hey')#I'm a comment! The system ignores me because my code isn't working
+</pre>
+</code>
+  <p> The system will ignore anything after the <code class='singleCode'>#</code> but only on that line.</p>
+  <p> Todo multi line comments you start with <code class='singleCode'>"""</code> put your comments and end it with a <code class='singleCode'>"""</code></p>
+<code class='blockCode'>
+<pre>
+print('Why are we still here? Just to suffer? Every night, I can feel my leg… and my arm… even my fingers. The body I’ve lost… the comrades I’ve lost… won’t stop hurting… It’s like they’re all still there. You feel it, too, don’t you')
+"""
+Wow thats eDgY
+"""
+</pre>
+</code>
+
   </div>
   <div id='bottom-border'>
     <button id='backButton'>Back</button>
@@ -201,37 +217,34 @@ print("Hey that is wrong!")
       background-color: #1e3137;
       color: #337d99;
       }
-  .vertical.scrollbar {
-    height: 480px !important;
-  }
-  ::-webkit-scrollbar {
-      width: 12px;
-      background-color: #1e3137;
-  }
-
-  ::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-      border-radius: 10px;
-      background-color: #487684;
-  }
-
-  ::-webkit-scrollbar-thumb {
-
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    .vertical.scrollbar {
+      height: 480px !important;
+    }
+    ::-webkit-scrollbar {
+        width: 12px;
+        background-color: #1e3137;
     }
 
-  body {
-    margin: 0px;
-    color: #45a5ca;
-    background-color: #337d99;
-  }
-  code, p, h {
-      margin-left: 10px;
-  }
-  code {
-      padding-left: 2px;
-  }
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #487684;
+    }
+
+    ::-webkit-scrollbar-thumb {
+
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+      }
+
+    body {
+      margin: 0px;
+      color: #45a5ca;
+      background-color: #337d99;
+    }
+     p, h {
+        margin-left: 10px;
+    }
   </style>
 <body>
 </html>
