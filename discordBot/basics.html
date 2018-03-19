@@ -1,0 +1,187 @@
+<!-- Basics for writing a python discord bot -->
+<html>
+<head>
+  <title> Python Discord Bot Basics</title>
+  <!--Back button script -->
+  <script type = "text/javascript">var mainWindow = "main.html";var nextLesson = "gettingYourToken.html";document.addEventListener('DOMContentLoaded', function(){document.getElementById('backButton').addEventListener('click', function(){window.location=mainWindow;}); document.getElementById('nextButton').addEventListener('click', function(){window.location = nextLesson;}); }); </script>
+  <script type = "text/javascript">
+  const {ipcRenderer} = require('electron');
+  function addButtons() {
+  document.getElementById('exit').addEventListener('click', function(){console.log('fuck');ipcRenderer.send('exit()');}); //Exit
+  document.getElementById('minimize').addEventListener('click', function(){ipcRenderer.send('minimize()');}); //Min
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    addButtons();
+    console.log('-webkit-app-region: no-drag !important;')
+  })
+  </script>
+</head>
+<body>
+  <!---<button id='backButton'>Back</button> -->
+  <div id="top-border">
+    <div id="topButtons">
+    <svg id="exit" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="red" />
+    </svg>
+    <svg id="minimize" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="yellow" />
+    </svg>
+  </div>
+    <h id="title">Library</h>
+  </div>
+  <div id='Main'>
+    <p id='headTitle'> Basics of creating Discord bots </p>
+    <h class='header'> Information </h>
+    <hr class='leftBreak'>
+    <p> There are various uses for discords bots. We can play games with users, log messages, moderate the chat, play music in voice channels, and do so much more.</p>
+    <p> In this tutorial you will be able to create a fully functional discord bot that you can run on your own.</p>
+    <p> Before this tutorial you should have a basic understanding of the language you want to create the bot with. I will be showing you how to create a bot with discord.py but you can create a bot in other languages.</p>
+    <h class='header'> Python </h>
+    <hr class='leftBreak'>
+    <p> If you want to follow along with the tutorial there are few things you will have to do first. </p>
+    <p> First you will want to download and install Python 3.6 </p>
+    <p> When Python is finished installing open up the command prompt and run <code class="singleCode"> py -m pip install discord.py</code></p>
+    <p> Also run <code class="singleCode"> py -m pip install asyncio </code> </p>
+    <p> After these two libraries are finished installing we can leave them alone for the time being. </p>
+
+
+  </div>
+  <div id='bottom-border'>
+    <button id='backButton'>Back</button>
+    <button id='nextButton'>Next Lesson</button>
+  </div>
+
+  <style>
+    #title {
+      text-align:center;
+      margin-right: 3%;
+    }
+    #headTitle {
+      font-size: 25px;
+      font-weight: bold;
+    }
+    #main {
+      width: 90%;
+      background-color: #265e73;
+      margin: 50px;
+      padding-top: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      padding-bottom: 20px;
+    }
+    #Main p {
+      display: block;
+
+    }
+    #headTitle {
+      text-align: center;
+      padding: right: 10px;
+    }
+    #topButtons {
+      position: sticky;
+      float: top;
+      width: 100%;
+      height: 25px;
+    }
+    .systemButtons {
+      position: sticky;
+      position: -webkit-sticky;
+      margin-top: 2px;
+      padding-top: 10px;
+      -webkit-app-region: no-drag !important;
+      float: left;
+      padding-left: 5px;
+    }
+    #top-border {
+      top: 0;
+      position: sticky;
+      width: 100%;
+      height: 50px;
+      background-color: #1e3137;
+      color: #337d99;
+      text-align: center;
+      font-size: 40px;
+      padding-bottom: 40px;
+      -webkit-app-region: drag;
+
+    }
+    #bottom-border{
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      height: 70px;
+      background-color: #1e3137;
+    }
+    #nextButton, #backButton  {
+      position: sticky;
+      background-color: inherit;
+      border: 0;
+      margin-left: 0;
+      width: 100px;
+      height : 100%;
+      font-size: 15px;
+      color: #337d99;
+    }
+    #nextButton:hover, #backButton:hover {
+      background-color: #265e73;
+    }
+    .header {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .leftBreak {
+      border-top-color: #183a47;
+      border: 0;
+      border-top: 5px solid;
+      width:  5%;
+      padding-left: 5px;
+      display: block;
+      float: left;
+    }
+
+    .blockCode {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin-right: 40px;
+        margin-left: 40px;
+        min-height: 10px;
+        display: block;
+        background-color: #1e3137;
+        color: #337d99;
+      }
+      .singleCode {
+      background-color: #1e3137;
+      color: #337d99;
+      }
+  .vertical.scrollbar {
+    height: 480px !important;
+  }
+  ::-webkit-scrollbar {
+      width: 12px;
+      background-color: #1e3137;
+  }
+
+  ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      background-color: #487684;
+  }
+
+  ::-webkit-scrollbar-thumb {
+
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+
+  body {
+    margin: 0px;
+    color: #45a5ca;
+    background-color: #337d99;
+  }
+  code, p, h {
+      margin-left: 10px;
+  }
+  code {
+      padding-left: 2px;
+  }
+  </style>
+<body>
+</html>
