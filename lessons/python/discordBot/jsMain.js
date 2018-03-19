@@ -13,8 +13,10 @@ function main(){
   //See we could write a loop to add a button for each lesson, but that would add complications that we don't need :C
   var lesson1 = ['The Basics', 'basics.html']
   var lesson2 = ['Getting your token', 'gettingYourToken.html']
-  var lesson3 = ['Writing your first bot', 'writingFirstBot.html']
-  var lesson4 = ['Understanding Async', 'understandingAsync.html']
+  var lesson3 = ['Inviting your bot', 'invitingYourBot.html']
+  var lesson4 = ['Writing your first bot', 'writingFirstBot.html']
+  var lesson5 = ['Understanding Async', 'understandingAsync.html']
+
   var lessons = [lesson1, lesson2, lesson3, lesson4]
   console.log(lessons[1])
   for (var items in lessons) {

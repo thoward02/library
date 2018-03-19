@@ -3,7 +3,7 @@
 <head>
   <title> Getting Tokens from Discord </title>
   <!--Back button script -->
-  <script type = "text/javascript">var mainWindow = "main.html";var nextLesson = "understandingAsync.html";document.addEventListener('DOMContentLoaded', function(){document.getElementById('backButton').addEventListener('click', function(){window.location=mainWindow;}); document.getElementById('nextButton').addEventListener('click', function(){window.location = nextLesson;}); }); </script>
+  <script type = "text/javascript">var mainWindow = "main.html";var nextLesson = "invitingYourBot.html";document.addEventListener('DOMContentLoaded', function(){document.getElementById('backButton').addEventListener('click', function(){window.location=mainWindow;}); document.getElementById('nextButton').addEventListener('click', function(){window.location = nextLesson;}); }); </script>
   <script type = "text/javascript">
     const {ipcRenderer} = require('electron');
   function addButtons() {
@@ -31,18 +31,19 @@
       <h id="title">Library</h>
     </div>
     <div id='Main'>
-      <p id='headTitle'> Basics of creating Discord bots </p>
-      <h class='header'> Information </h>
+      <p id='headTitle'> How to get your bot's token</p>
+      <h class='header'> What is a token </h>
       <hr class='leftBreak'>
-      <p> There are various uses for discords bots. We can play games with users, log messages, moderate the chat, play music in voice channels, and do so much more.</p>
-      <p> In this tutorial you will be able to create a fully functional discord bot that you can run on your own.</p>
-      <p> Before this tutorial you should have a basic understanding of the language you want to create the bot with. I will be showing you how to create a bot with discord.py but you can create a bot in other languages.</p>
-      <h class='header'> Python </h>
+      <p> Bot tokens are how we link our program to our bot's user ID </p>
+      <p> As long as a user has the bot token they can manipulate what the bot does </p>
+      <p> Make sure that you don't share your token with anyone </p>
+      <h class='header'> Getting your token </h>
       <hr class='leftBreak'>
-      <p> If you want to follow along with the tutorial there are few things you will have to do first. </p>
-      <p> First you will want to download and install Python 3.6 </p>
-      <p> When Python is finished installing open up the command prompt and run <code class="singleCode"> py -m pip install discord.py</code></p>
-      <p> After discord.py is finished installing we can leave it alone for now. We will get into that later. </p>
+      <p> To get our token we go to: https://discordapp.com/developers </p>
+      <p> We have to first create an app by clicking "create an app" You can name the app and also give it a profile picture. </p>
+      <p> From there we can go to the app's setting and create a bot account. There will be a button that will reveal the bot's token. Make sure you copy the token and save it somewhere.</p>
+      <p> You will also be able to grab some other information from the bot page. For now just leave it be. </p>
+      <p> I will show you what to do with that information later in the tutorial. </p>
 
 
     </div>
