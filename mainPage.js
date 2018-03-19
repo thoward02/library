@@ -79,7 +79,7 @@ function main() {
           for (var lessons in data[topics]) {
             var buttonDiv = document.createElement('div')
             lessonsDiv.appendChild(buttonDiv)
-            
+
             var button = document.createElement("button")
             button.id = topics+":"+lessons
             button.className = "lessonButtons"
@@ -153,6 +153,15 @@ function main() {
 
 }
 document.addEventListener('DOMContentLoaded', function() {
-  main();
+  document.getElementById('bottom-border').style.height = "100%";
+  document.getElementById('bottom-border').style.marginTop = "80px";
 
+  document.getElementById('startButton').addEventListener('click', function(){
+    document.getElementById('startButton').style.display = "none";
+    document.getElementById('bottom-border').style.height = "70px";
+    x = document.getElementById('body')
+    x.style.display = "flex";
+    main();
+
+  });
 });

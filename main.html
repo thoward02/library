@@ -24,6 +24,7 @@
 
   <div id="top-border">
       <div id="topButtons">
+
       <svg id="exit" class= "systemButtons"height="16" width="16">
         <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="red" />
       </svg>
@@ -43,7 +44,7 @@
 
     </div>
   </div>
-  <div id='bottom-border'></div>
+  <div id='bottom-border'><button id="startButton">Start</button></div>
   <style>
   #topButtons {
     position: sticky;
@@ -81,6 +82,13 @@
     height: 70px;
     background-color: #1e3137;
 
+  }
+  #startButton {
+    border-color: white;
+
+    background-color:rgba(0, 0, 0, 0.0)
+  
+    -webkit-border-radius: 10px;
   }
   #main {
     font-size: 42px;
@@ -124,7 +132,7 @@
   }
   .buttons:hover {
     background-color: #204d5e;
-    
+
   }
   .lessonButtons {
     color: #337d99;
@@ -146,7 +154,7 @@
     color: #337d99;
   }
   .body {
-    display: flex;
+    display: none;
     padding-top: 0px;
     min-height: 80%;
     margin-top: 0px;
