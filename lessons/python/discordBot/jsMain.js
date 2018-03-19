@@ -22,6 +22,7 @@ function main(){
     var lessonButton = document.createElement("button")
     lessonButton.id = lessons[items][1]
     lessonButton.innerHTML = lessons[items][0]
+    lessonButton.className = "buttons"
     document.getElementById("lessons").appendChild(lessonButton)
     //There is a billy joel concert on october the 13 in Salem NC.... I wonder if I can go, always did enjoy Piano Man
     //WHEN I WORE A YOUNGER MANS CLOTHES sorry im bored xd
