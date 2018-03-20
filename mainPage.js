@@ -153,15 +153,8 @@ function main() {
 
 }
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('bottom-border').style.height = "100%";
-  document.getElementById('bottom-border').style.marginTop = "80px";
 
-  document.getElementById('startButton').addEventListener('click', function(){
-    document.getElementById('startButton').style.display = "none";
-    document.getElementById('bottom-border').style.height = "70px";
-    x = document.getElementById('body')
-    x.style.display = "flex";
     main();
 
-  });
+
 });
