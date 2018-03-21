@@ -15,7 +15,6 @@ function main(){
   var lesson2 = ['Getting your token', 'gettingYourToken.html']
   var lesson3 = ['Inviting your bot', 'invitingYourBot.html']
   var lesson4 = ['Writing your first bot', 'writingFirstBot.html']
-  var lesson5 = ['Understanding Async', 'understandingAsync.html']
 
   var lessons = [lesson1, lesson2, lesson3, lesson4]
   console.log(lessons[1])
