@@ -39,8 +39,8 @@ class commands:
             self.manifest = 1 #There is no manifest so we return 1 basically saying false.
         return self.manifest
     def downloadManifest(self):
-        self.server = "127.0.0.1" #Local host for now due to testing
-        self.url = "http://"+self.server+"/lessons/manifest.json"
+        self.server = "saltlibrary.azurewebsites.net" #Local host for now due to testing
+        self.url = "https://"+self.server+"/manifest.json"
         self.cDir = os.getcwd()
         self.u = " \ "
         self.u = self.u.replace(' ', '')
@@ -93,10 +93,10 @@ class commands:
         if(self.checkForFolder==False):
             return 1
     def downloadLesson(self, lessonName):
-        self.server = "127.0.0.1" #Local host for now due to testing
+        self.server = "saltlibrary.azurewebsites.net" #Local host for now due to testing
         topic, lesson  = lessonName.split(":")
 
-        self.url = "http://"+self.server+"/lessons/"+topic+"/"+lesson+"/"
+        self.url = "https://"+self.server+'/'+topic+"/"+lesson+"/"
         self.cDir = os.getcwd()
         self.u = " \ "
         self.u = self.u.replace(' ', '')

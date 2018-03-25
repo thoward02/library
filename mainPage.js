@@ -53,7 +53,7 @@ function main() {
           topicDiv.appendChild(button);
           button.innerHTML = topics
           button.id = topics
-          button.className = "buttons"
+          button.className = "buttonsL"
           var lessonsDiv = document.createElement("div")
           lessonsDiv.id = topics+"lessonsDiv"
           lessonsDiv.style.display = "none"
@@ -84,8 +84,15 @@ function main() {
             button.id = topics+":"+lessons
             button.className = "lessonButtons"
             button.addEventListener('click', function(x, name = this.id){
-              document.getElementById("mainCont").style.visibility = "hidden" // So we can load the new page, and if they choose to go back we can re pull it up\
-
+              //Get rid of the buttons
+              var myElements = document.querySelectorAll(".buttonsL");
+              for (var i = 0; i < myElements.length; i++) {
+                myElements[i].style.visibility = "hidden" // So we can load the new page, and if they choose to go back we can re pull it up
+              }
+              var myElements = document.querySelectorAll(".lessonButtons");
+              for (var i = 0; i < myElements.length; i++) {
+                myElements[i].style.visibility = "hidden" // So we can load the new page, and if they choose to go back we can re pull it up
+              }
               document.getElementById("main").innerHTML = "Loading "+name
               var checkForLesson = exec("py pythonClient.py");
               checkForLesson.stdout.on('data', function(data){
@@ -102,7 +109,7 @@ function main() {
 
                   document.getElementById('main').innerHTML = "You don't have this topic on disk, would you like to download it?"
                   buttonDivs = document.createElement("div")
-                  document.getElementById('body').appendChild(buttonDivs) //need to change this
+                  document.getElementById('mainCont').appendChild(buttonDivs) //need to change this
                   //yes
                   yesButton = document.createElement('button')
                   yesButton.innerHTML = "Yes"
@@ -128,7 +135,7 @@ function main() {
                   //no
                   noButton = document.createElement('button')
                   noButton.innerHTML = "No"
-                  document.getElementById('body').appendChild(noButton)
+                  document.getElementById('mainCont').appendChild(noButton)
                   noButton.className = "buttons"
                   noButton.addEventListener("click", function(){
                     location.reload(); //Just sends us back to the start
