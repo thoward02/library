@@ -129,8 +129,14 @@ function main() {
                         ipcRenderer.send("loadLesson()", topic, lesson);
                       }
                     });
-
+                    var myElements = document.querySelectorAll(".buttons");
+                    for (var i = 0; i < myElements.length; i++) {
+                      myElements[i].style.visibility = "hidden" // So we can load the new page, and if they choose to go back we can re pull it up
+                    }
+                    document.getElementById("main").innerHTML = "Downloading your lesson please wait"
+                    document.getElementById("details").innerHTML = "..."
                     downloadLesson.stdin.write("downloadLesson()#"+name+"\n")
+
                   });
                   //no
                   noButton = document.createElement('button')

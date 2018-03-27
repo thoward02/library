@@ -8,7 +8,9 @@
   },
   "author": "THoward02",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "npm": "^5.8.0"
+  },
   "devDependencies": {
     "electron": "^1.8.3"
   }
