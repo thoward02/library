@@ -1,5 +1,6 @@
 # library
 This is a project founded by SALT, designed to bring teaching materials to the public.
+It is an open source program built in electron and python, using cloud hosting to distribute lessons.
 # Install
 The install is easy and simple. You'll need [node.js]("https://nodejs.org/en"), and [Python 3.6 or above]("https://www.python.org/").
 The back end of the program is pythonClient.py, so obviously you'll need python. The python program is activated in the JS scripts using `exec("py pythonClient.py)`. The program is only meant to be ran on windows for now, if you're on linux change `py`, to `python` in `exec("py pythonClient.py)`.
