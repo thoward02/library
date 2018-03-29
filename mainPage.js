@@ -93,7 +93,9 @@ function main() {
               for (var i = 0; i < myElements.length; i++) {
                 myElements[i].style.visibility = "hidden" // So we can load the new page, and if they choose to go back we can re pull it up
               }
-              document.getElementById("main").innerHTML = "Loading "+name
+              var nameStripped = name.replace(/_/g, " ")
+
+              document.getElementById("main").innerHTML = "Loading "+nameStripped
               var checkForLesson = exec("py pythonClient.py");
               checkForLesson.stdout.on('data', function(data){
                 if(data==0){
@@ -151,7 +153,8 @@ function main() {
               });
               checkForLesson.stdin.write("checkForLesson()#"+name+"\n");
             });
-            button.innerHTML = lessons
+            var nameStripped = lessons.replace(/_/g, " ")
+            button.innerHTML = nameStripped
             buttonDiv.appendChild(button)
 
           }

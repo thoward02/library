@@ -9,9 +9,10 @@
   "author": "THoward02",
   "license": "ISC",
   "dependencies": {
+    "electron-packager": "^11.2.0",
     "npm": "^5.8.0"
   },
   "devDependencies": {
-    "electron": "^1.8.3"
+    "electron": "^1.8.4"
   }
 }
