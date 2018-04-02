@@ -7,12 +7,12 @@
   <script type="text/javascript">
     //const {ipcRenderer} = require('electron');
     function addButtons(){
-      document.getElementById('exit').addEventListener('click', function(){console.log('fuck');ipcRenderer.send('exit()');}); //Exit
+      document.getElementById('exit').addEventListener('click', function(){ipcRenderer.send('exit()');}); //Exit
       document.getElementById('minimize').addEventListener('click', function(){ipcRenderer.send('minimize()');}); //Min
     }
     document.addEventListener('DOMContentLoaded', function(){
       addButtons();
-      console.log('-webkit-app-region: no-drag !important;')
+
     })
   </script>
 
@@ -23,7 +23,7 @@
 
 
   <div id="top-border">
-      <div id="topButtons">
+    <div id="topButtons">
       <svg id="exit" class= "systemButtons"height="16" width="16">
         <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="red" />
       </svg>
@@ -31,9 +31,19 @@
         <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="yellow" />
       </svg>
     </div>
-    <h>Library</h>
+    <h id='libTitle'>Library</h>
   </div>
-  <div class='body'id="body">
+  <div id='startPage'>
+      <div id='startPageContent'>
+      <div id='startPageText'>
+        <p> The library is a program dedicated to further the knowledge of you! With this program we hope to provide easy access to information and lessons for all! Go ahead and click Get Started to download our manifest of lessons!</p>
+      </div>
+      <div id='startButtonDiv'>
+        <button id='start'>Get Started </button>
+      </div>
+    </div>
+  </div>
+  <div id="body">
     <div class='info'>
       <p id="main"></p>
       <hr class='leftBreak'>
@@ -49,18 +59,17 @@
   #topButtons {
     position: sticky;
     float: top;
-    width: 100%;
-    height: 25px;
+    width: 30%;
+    height: 100%;
   }
   .systemButtons {
-
     position: sticky;
     position: -webkit-sticky;
     margin-top: 2px;
     padding-top: 10px;
     -webkit-app-region: no-drag !important;
     float: left;
-    padding-left: 5px;
+    margin-left: 5px;
   }
   #top-border {
     top: 0;
@@ -73,7 +82,11 @@
     font-size: 40px;
     padding-bottom: 40px;
     -webkit-app-region: drag;
-
+  }
+  #top-border h {
+    text-align: center;
+    margin-left: 0px;
+    margin-top: 0px;
   }
   #bottom-border{
     position: sticky;
@@ -107,7 +120,6 @@
   .info {
     min-width: 50%;
     float: left;
-
     min-height: 100%;
     background-color:#204d5e;
 
@@ -149,19 +161,52 @@
     border-color: #337d99;
     text-align: center;
     border: none;
-    background-color: #264048 ;
-
+    background-color: #264048;
   }
   .lessonButtons:hover {
     background-color: #1e3137;
     color: #337d99;
   }
-  .body {
+  #startPageContent {
+    margin-top: 50px;
+  }
+  #startPage {
     display: flex;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(30,49,55,1), rgba(38,47,57,1) 90%), linear-gradient(90deg, rgba(30,49,55,0.8), rgba(38,47,57,0.6) 90%);
+    color: #337d99;
+    text-align: center;
+    top:  0px;
+  }
+  #startButtonDiv {
+    position: absolute;
+    text-align: center;
+    width: 60%;
+    margin-top: 10px;
+    margin-left: 20%;
+  }
+  #startPageText {
+    font-size:24px;
+    width: 80%;
+    margin-left: 10%;
+  }
+  #start {
+    color: #1e3137;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    height: 40px;
+    width: 100%;
+    margin-top: 80px;
+    text-align: center;
+    font-size: 18px;
+    border: none;
+    background-color: #337d99;
+  }
+  #body {
+    display: none;
     padding-top: 0px;
     min-height: 80%;
     margin-top: 0px;
-
     background-color:  #337d99;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
@@ -186,15 +231,12 @@
       width: 12px;
       background-color: #1e3137;
   }
-
   ::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
       border-radius: 10px;
       background-color: #487684;
   }
-
   ::-webkit-scrollbar-thumb {
-
       border-radius: 10px;
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
   }
@@ -202,6 +244,7 @@
     color: #337d99;
     margin : 0px;
     border-radius: 20px;
+    overflow-y: hidden;
   }
   </style>
 </body>

@@ -2,7 +2,16 @@
 const {ipcRenderer} = require('electron');
 var sys = require('sys');
 var exec = require('child_process').exec;
-
+function startUp(){
+  //Here is where we will be adding the intro page for Library
+  document.getElementById('start').addEventListener('click', function(){
+    document.getElementById('startPage').style.display = "none";
+    document.getElementById('body').style.display = "flex";
+    document.body.style.overflowY = "scroll"
+    document.getElementById('libTitle').style.display = "none";
+    main();
+  })
+}
 
 function main() {
   //check for a manifest.json for downloaded lessons
@@ -169,8 +178,8 @@ function main() {
 
 }
 document.addEventListener('DOMContentLoaded', function() {
+    startUp();
 
-    main();
 
 
 });
