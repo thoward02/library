@@ -41,16 +41,16 @@ class commands:
         #Lets move on and grab the new version
         self.url = "https://raw.githubusercontent.com/thoward02/library/master/package.json"
         try:
-            self.file = urllib.request.urlretrieve(self.url, str(os.getcwd()+"manifest.tmp"))
+            self.file = urllib.request.urlretrieve(self.url, str(os.getcwd()+"/manifest.tmp"))
         except:
             #Download failed
             return 404
-        with open(str(os.getcwd()+"manifest.tmp"), "r") as jsonFile:
+        with open(str(os.getcwd()+"/manifest.tmp"), "r") as jsonFile:
             self.data = json.load(jsonFile)
         self.newVersion = self.data["version"]
         if(self.newVersion==self.currentVersion):
             #It's up to date
-            os.remove(os.getcwd()+"manifest.tmp")
+            os.remove(os.getcwd()+"/manifest.tmp")
             return 1
         if(self.newVersion == self.currentVersion):
             return 0
@@ -60,7 +60,7 @@ class commands:
             self.updatedManifest = urllib.request.urlretrieve(self.url, str(os.getcwd()+"/manifest.tmp"))
         except:
             return 404 #could not update
-        with open(str(os.getcwd()+"manifest.tmp"), "r") as jsonFile:
+        with open(str(os.getcwd()+"/manifest.tmp"), "r") as jsonFile:
             self.data = json.load(jsonFile)
         print(self.data)
         self.files = self.data["manifest"]["files"]
@@ -72,6 +72,7 @@ class commands:
                 self.fileUrl = "https://raw.githubusercontent.com/thoward02/library/master/"+str(self.files[self.newFiles])
                 urllib.request.urlretrieve(self.fileUrl, str(os.getcwd()+"/"+str(self.files[self.newFiles])))
                 print(200)
+            os.remove(str(os.getcwd())+"/manifest.tmp")
             return 0 #Everything is all updated and good to go!
         except:
             return 1 #We failed

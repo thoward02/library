@@ -79,16 +79,21 @@
                       yesButton.id = "yesButton"
                       yesButton.addEventListener('click', function(){
                         document.getElementById('header').innerHTML = "Updating...";
+                        document.getElementById('details').innerHTML = "Files updated: "
+                        yesButton.remove();
+                        noButton.remove();
                         //Here is where we update C:
                         //You know "Brain Power" by NOMA makes my head fuckin bob. Its not very good, musically speaking but still
                         var updateFiles = exec("py pythonClient.py");
                         updateFiles.stdout.on("data", function(data){
+                          console.log(data)
                           try {
                             //Looking to see how many files there are in need of updating...
                             var files = data.split('##');
-                            console.log(files[1]);
+                            console.log(files);
                           }
                           catch(error) {
+                            console.log(error)
                             // Looking to see if there was an error or we are done Updating
                           }
                         });
