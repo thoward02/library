@@ -1,6 +1,6 @@
 {
   "name": "library",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "This is a program designed to provide teaching materials to all, in various subjects.",
   "main": "main.js",
   "scripts": {
@@ -14,5 +14,15 @@
   },
   "devDependencies": {
     "electron": "^1.8.4"
+  },
+  "manifest" : {
+    "description" : "yes I added this here, so i can update files based off of the manifest below <3",
+    "files" : {
+      "1" : "main.js",
+      "2" : "main.html",
+      "3" : "mainPage.js",
+      "4" : "package.json",
+      "5" : "pythonClient.py"
+    }
   }
 }
