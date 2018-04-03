@@ -62,7 +62,7 @@ class commands:
             return 404 #could not update
         with open(str(os.getcwd()+"/manifest.tmp"), "r") as jsonFile:
             self.data = json.load(jsonFile)
-        print(self.data)
+        #print(self.data)
         self.files = self.data["manifest"]["files"]
         print("x##"+str(len(self.files)))
         try:

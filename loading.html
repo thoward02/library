@@ -86,11 +86,12 @@
                         //You know "Brain Power" by NOMA makes my head fuckin bob. Its not very good, musically speaking but still
                         var updateFiles = exec("py pythonClient.py");
                         updateFiles.stdout.on("data", function(data){
-                          console.log(data)
+
                           try {
                             //Looking to see how many files there are in need of updating...
-                            var files = data.split('##');
-                            console.log(files);
+                            data = string(data);
+                            var files1 = data.split('##');
+
                           }
                           catch(error) {
                             console.log(error)
