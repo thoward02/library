@@ -52,7 +52,7 @@ class commands:
             #It's up to date
             os.remove(os.getcwd()+"/manifest.tmp")
             return 1
-        if(self.newVersion == self.currentVersion):
+        if(self.newVersion != self.currentVersion):
             return 0
     def updateFiles(self):
         try:
@@ -64,14 +64,14 @@ class commands:
             self.data = json.load(jsonFile)
         #print(self.data)
         self.files = self.data["manifest"]["files"]
-        print("x##"+str(len(self.files)))
+
         try:
             for self.newFiles in self.files:
                 #The file name can be grabbed via print(self.files[self.newFiles])
                 self.currentFile = self.files[self.newFiles]
                 self.fileUrl = "https://raw.githubusercontent.com/thoward02/library/master/"+str(self.files[self.newFiles])
                 urllib.request.urlretrieve(self.fileUrl, str(os.getcwd()+"/"+str(self.files[self.newFiles])))
-                print("##"+str(200))
+
             os.remove(str(os.getcwd())+"/manifest.tmp")
             return 0 #Everything is all updated and good to go!
         except:
