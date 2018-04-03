@@ -66,8 +66,8 @@
                   document.getElementById('details').innerHTML = "Checking for updates...";
                   var checkForUpdates = exec("py pythonClient.py");
                   checkForUpdates.stdout.on("data", function(data){
-                    console.log(data)
-                    if(data==1){
+                    //console.log(data)
+                    if(data==0){
                       // If there is an update
                       document.getElementById('header').innerHTML = "Update Avalible";
                       document.getElementById('details').innerHTML = "Would you like to update?";
@@ -79,24 +79,62 @@
                       yesButton.id = "yesButton"
                       yesButton.addEventListener('click', function(){
                         document.getElementById('header').innerHTML = "Updating...";
-                        document.getElementById('details').innerHTML = "Files updated: "
+                        document.getElementById('header').innerHTML = "Updating... Give us a few, hopefully it'll be done quickly. I mean given the file size it should be anyways <3";
                         yesButton.remove();
                         noButton.remove();
                         //Here is where we update C:
                         //You know "Brain Power" by NOMA makes my head fuckin bob. Its not very good, musically speaking but still
                         var updateFiles = exec("py pythonClient.py");
+                        var currentFileNum = 0
                         updateFiles.stdout.on("data", function(data){
+                            if(data == 0){
+                              document.getElementById('header').innerHTML = "Updating Done";
+                              document.getElementById('details').innerHTML = "Now loading~";
+                              ipcRenderer.send('loadMain()');
+                            }
+                            if(data == 1){
+                              document.getElementById('header').innerHTML = "Updating Failed";
+                              document.getElementById('details').innerHTML = "We couldn't update, would you still like to continue";
+                              var buttonDiv = document.createElement('div');
+                              buttonDiv.id = "buttonDiv";
+                              document.getElementById('bottomBorder').appendChild(buttonDiv);
+                              var yesButton = document.createElement('button');
+                              yesButton.innerHTML = 'Yes';
+                              yesButton.id = "yesButton"
+                              yesButton.addEventListener('click', function(){
+                                ipcRenderer.send('loadMain()');
+                              });
+                              var noButton = document.createElement('button');
+                              noButton.innerHTML = 'No';
+                              noButton.id = "noButton";
+                              noButton.addEventListener('click', function(){
+                                ipcRenderer.send('exit()');
+                              });
+                              document.getElementById('buttonDiv').appendChild(yesButton);
+                              document.getElementById('buttonDiv').appendChild(noButton);
+                            }
+                            if(data == 404){
+                              document.getElementById('header').innerHTML = "Updating Failed";
+                              document.getElementById('details').innerHTML = "We couldn't update, would you still like to continue";
+                              var buttonDiv = document.createElement('div');
+                              buttonDiv.id = "buttonDiv";
+                              document.getElementById('bottomBorder').appendChild(buttonDiv);
+                              var yesButton = document.createElement('button');
+                              yesButton.innerHTML = 'Yes';
+                              yesButton.id = "yesButton"
+                              yesButton.addEventListener('click', function(){
+                                ipcRenderer.send('loadMain()');
+                              });
+                              var noButton = document.createElement('button');
+                              noButton.innerHTML = 'No';
+                              noButton.id = "noButton";
+                              noButton.addEventListener('click', function(){
+                                ipcRenderer.send('exit()');
+                              });
+                              document.getElementById('buttonDiv').appendChild(yesButton);
+                              document.getElementById('buttonDiv').appendChild(noButton);
+                            }
 
-                          try {
-                            //Looking to see how many files there are in need of updating...
-                            data = String(data);
-                            var files1 = data.split('##');
-                            console.log(files1[1])
-                          }
-                          catch(error) {
-                            console.log(error)
-                            // Looking to see if there was an error or we are done Updating
-                          }
                         });
                         updateFiles.stdin.write("updateFiles()#none" + "\n");
                       });
@@ -109,7 +147,7 @@
                       document.getElementById('buttonDiv').appendChild(yesButton);
                       document.getElementById('buttonDiv').appendChild(noButton);
                     }
-                    if(data==0) {
+                    if(data==1) {
                       ipcRenderer.send("loadMain()");
                     }
                     if(data==404){

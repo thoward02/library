@@ -48,11 +48,13 @@ class commands:
         with open(str(os.getcwd()+"/manifest.tmp"), "r") as jsonFile:
             self.data = json.load(jsonFile)
         self.newVersion = self.data["version"]
+        
         if(self.newVersion==self.currentVersion):
             #It's up to date
             os.remove(os.getcwd()+"/manifest.tmp")
             return 1
         if(self.newVersion != self.currentVersion):
+            os.remove(os.getcwd()+"/manifest.tmp")
             return 0
     def updateFiles(self):
         try:
