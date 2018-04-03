@@ -31,6 +31,50 @@ class commands:
         except:
             #We tried to get out but the ol bastards kept us in lock down .-. (we dont have internet connection lel)
             return 1
+    def checkForUpdates(self):
+        #Get our version
+        self.jsonFile = "package.json"
+        with open(self.jsonFile, "r") as jsonFile:
+            self.data = json.load(jsonFile)
+        self.currentVersion = self.data["version"]
+        jsonFile.close() #Close the file
+        #Lets move on and grab the new version
+        self.url = "https://raw.githubusercontent.com/thoward02/library/master/package.json"
+        try:
+            self.file = urllib.request.urlretrieve(self.url, str(os.getcwd()+"manifest.tmp"))
+        except:
+            #Download failed
+            return 404
+        with open(str(os.getcwd()+"manifest.tmp"), "r") as jsonFile:
+            self.data = json.load(jsonFile)
+        self.newVersion = self.data["version"]
+        if(self.newVersion==self.currentVersion):
+            #It's up to date
+            os.remove(os.getcwd()+"manifest.tmp")
+            return 1
+        if(self.newVersion == self.currentVersion):
+            return 0
+    def updateFiles(self):
+        try:
+            self.url = "https://raw.githubusercontent.com/thoward02/library/master/package.json"
+            self.updatedManifest = urllib.request.urlretrieve(self.url, str(os.getcwd()+"/manifest.tmp"))
+        except:
+            return 404 #could not update
+        with open(str(os.getcwd()+"manifest.tmp"), "r") as jsonFile:
+            self.data = json.load(jsonFile)
+        print(self.data)
+        self.files = self.data["manifest"]["files"]
+        print("x##"+str(len(self.files)))
+        try:
+            for self.newFiles in self.files:
+                #The file name can be grabbed via print(self.files[self.newFiles])
+                self.currentFile = self.files[self.newFiles]
+                self.fileUrl = "https://raw.githubusercontent.com/thoward02/library/master/"+str(self.files[self.newFiles])
+                urllib.request.urlretrieve(self.fileUrl, str(os.getcwd()+"/"+str(self.files[self.newFiles])))
+                print(200)
+            return 0 #Everything is all updated and good to go!
+        except:
+            return 1 #We failed
     def checkManifest(self):
         self.cDir = os.getcwd()
         self.u = " \ "
@@ -165,6 +209,15 @@ class proc:
             #check if we can connect to our cloudHost
             self.com = commands()
             self.output = self.com.checkCloudConnection()
+            return self.output
+        if(self.command=="checkForUpdates()"):
+            #Check the package.json(s) to see if theyre akin, if not update program, if so pass
+            self.com = commands()
+            self.output = self.com.checkForUpdates()
+            return self.output
+        if(self.command=="updateFiles()"):
+            self.com = commands()
+            self.output = self.com.updateFiles()
             return self.output
         if(self.command=='checkManifest()'):
             #In this case the command `arg` is null --  checkManifest()#none is the input

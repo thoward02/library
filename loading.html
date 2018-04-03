@@ -37,7 +37,7 @@
                         //check for cloud connection
             var internetCheck = exec("py pythonClient.py"); //Redefine to save a lil memory and cut down on my damn typing. I mean I *could* make a new var but idc
             internetCheck.stdout.on("data", function(data){
-              console.log(data)
+
                 if(data==1){
                   //Cant connect to cloud
                   document.getElementById('header').innerHTML = "Smh";
@@ -62,9 +62,75 @@
                 }
                 if(data==0){
                   //I wanna check for updates here
-                  document.getElementById('header').innerHTML = "Success!";
-                  document.getElementById('details').innerHTML = "Everything is all good, loading now o7";
-                  ipcRenderer.send('loadMain()');
+                  document.getElementById('header').innerHTML = "Loading...";
+                  document.getElementById('details').innerHTML = "Checking for updates...";
+                  var checkForUpdates = exec("py pythonClient.py");
+                  checkForUpdates.stdout.on("data", function(data){
+                    console.log(data)
+                    if(data==1){
+                      // If there is an update
+                      document.getElementById('header').innerHTML = "Update Avalible";
+                      document.getElementById('details').innerHTML = "Would you like to update?";
+                      var buttonDiv = document.createElement('div');
+                      buttonDiv.id = "buttonDiv";
+                      document.getElementById('bottomBorder').appendChild(buttonDiv);
+                      var yesButton = document.createElement('button');
+                      yesButton.innerHTML = 'Yes';
+                      yesButton.id = "yesButton"
+                      yesButton.addEventListener('click', function(){
+                        document.getElementById('header').innerHTML = "Updating...";
+                        //Here is where we update C:
+                        //You know "Brain Power" by NOMA makes my head fuckin bob. Its not very good, musically speaking but still
+                        var updateFiles = exec("py pythonClient.py");
+                        updateFiles.stdout.on("data", function(data){
+                          try {
+                            //Looking to see how many files there are in need of updating...
+                            var files = data.split('##');
+                            console.log(files[1]);
+                          }
+                          catch(error) {
+                            // Looking to see if there was an error or we are done Updating
+                          }
+                        });
+                        updateFiles.stdin.write("updateFiles()#none" + "\n");
+                      });
+                      var noButton = document.createElement('button');
+                      noButton.innerHTML = 'No';
+                      noButton.id = "noButton";
+                      noButton.addEventListener('click', function(){
+                        ipcRenderer.send('loadMain()');
+                      });
+                      document.getElementById('buttonDiv').appendChild(yesButton);
+                      document.getElementById('buttonDiv').appendChild(noButton);
+                    }
+                    if(data==0) {
+                      ipcRenderer.send("loadMain()");
+                    }
+                    if(data==404){
+                      //Download Failed
+                      // If there is an update
+                      document.getElementById('header').innerHTML = "Failed to check for update";
+                      document.getElementById('details').innerHTML = "Would you like to load anyways?";
+                      var buttonDiv = document.createElement('div');
+                      buttonDiv.id = "buttonDiv";
+                      document.getElementById('bottomBorder').appendChild(buttonDiv);
+                      var yesButton = document.createElement('button');
+                      yesButton.innerHTML = 'Yes';
+                      yesButton.id = "yesButton"
+                      yesButton.addEventListener('click', function(){
+                        ipcRenderer.send('loadMain()')
+                      });
+                      var noButton = document.createElement('button');
+                      noButton.innerHTML = 'No';
+                      noButton.id = "noButton";
+                      noButton.addEventListener('click', function(){
+                        ipcRenderer.send('exit()');
+                      });
+                      document.getElementById('buttonDiv').appendChild(yesButton);
+                      document.getElementById('buttonDiv').appendChild(noButton);
+                    }
+                  });
+                  checkForUpdates.stdin.write("checkForUpdates()#none"+"\n");
                 }
             });
             internetCheck.stdin.write("checkCloudConnection()#none"+"\n");
