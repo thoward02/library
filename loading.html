@@ -1,0 +1,150 @@
+<!-- loading.html the main loading page -->
+<html>
+  <head>
+    <script type='text/javascript'>
+      function checkInternet(){
+        //Check for internet
+        const exec = require('child_process').exec;
+        const {ipcRenderer} = require('electron');
+        var internetCheck = exec("py pythonClient.py");
+        internetCheck.stdout.on('data', function(data){
+          console.log(data)
+          if(data==1) {
+            document.getElementById('header').innerHTML = "Smh!";
+            document.getElementById('details').innerHTML = 'No internet Connection... Would you like to continue offline?';
+            //create button div
+            var buttonDiv = document.createElement('div');
+            buttonDiv.id = "buttonDiv";
+            document.getElementById('bottomBorder').appendChild(buttonDiv);
+            var yesButton = document.createElement('button');
+            yesButton.innerHTML = 'Yes';
+            yesButton.id = "yesButton"
+            yesButton.addEventListener('click', function(){
+              ipcRenderer.send('loadMain()');
+            });
+            var noButton = document.createElement('button');
+            noButton.innerHTML = 'No';
+            noButton.id = "noButton";
+            noButton.addEventListener('click', function(){
+              ipcRenderer.send('exit()');
+            });
+            document.getElementById('buttonDiv').appendChild(yesButton);
+            document.getElementById('buttonDiv').appendChild(noButton);
+
+          }
+          if(data==0) {
+            document.getElementById('details').innerHTML = 'Connected to the internet! Testing cloud connection...';
+                        //check for cloud connection
+            var internetCheck = exec("py pythonClient.py"); //Redefine to save a lil memory and cut down on my damn typing. I mean I *could* make a new var but idc
+            internetCheck.stdout.on("data", function(data){
+              console.log(data)
+                if(data==1){
+                  //Cant connect to cloud
+                  document.getElementById('header').innerHTML = "Smh";
+                  document.getElementById("details").innerHTML = "We can't connect to our server for updates, would you like to continue?"
+                  var buttonDiv = document.createElement('div');
+                  buttonDiv.id = "buttonDiv";
+                  document.getElementById('bottomBorder').appendChild(buttonDiv);
+                  var yesButton = document.createElement('button');
+                  yesButton.innerHTML = 'Yes';
+                  yesButton.id = "yesButton"
+                  yesButton.addEventListener('click', function(){
+                    ipcRenderer.send('loadMain()');
+                  });
+                  var noButton = document.createElement('button');
+                  noButton.innerHTML = 'No';
+                  noButton.id = "noButton";
+                  noButton.addEventListener('click', function(){
+                    ipcRenderer.send('exit()');
+                  });
+                  document.getElementById('buttonDiv').appendChild(yesButton);
+                  document.getElementById('buttonDiv').appendChild(noButton);
+                }
+                if(data==0){
+                  //I wanna check for updates here
+                  document.getElementById('header').innerHTML = "Success!";
+                  document.getElementById('details').innerHTML = "Everything is all good, loading now o7";
+                  ipcRenderer.send('loadMain()');
+                }
+            });
+            internetCheck.stdin.write("checkCloudConnection()#none"+"\n");
+          }
+        });
+        internetCheck.stdin.write('checkInternet()#none'+'\n');
+      }
+      document.addEventListener('DOMContentLoaded', function(){
+        checkInternet();
+      })
+    </script>
+  </head>
+  <body>
+    <div id="topBorder">
+      <h id="header"> Loading... </h>
+    </div>
+    <div id='bottomBorder'>
+      <p id='details'> Checking Internet Connection </p>
+    </div>
+    <style>
+      #topBorder {
+        background-color: #1e3137;
+        color: #337d99;
+        text-align: center;
+        height: 40px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        font-size: 22px;
+        padding-top: 10px;
+        float: top;
+        margin: 0px;
+        -webkit-app-region: drag;
+      }
+      #details {
+        margin: 0px;
+        top:0;
+        text-align: center;
+        font-size: 18px;
+      }
+      #bottomBorder {
+        background-color: #204d5e;
+        color: #337d99;
+        height: 100%;
+        width: 100%;
+        float: bottom;
+        top: 0;
+        margin: 0px;
+      }
+      #buttonDiv {
+        font-size: 24px;
+        margin-left: 15%;
+      }
+      #yesButton {
+        margin-top: 10px;
+        text-align: center;
+        width: 80%;
+        height: 15%;
+        color: white;
+        background-color: #1e3137;
+        color: #337d99;
+        border: none;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+      }
+      #noButton {
+        margin-top: 10px;
+        text-align: center;
+        width: 80%;
+        height: 15%;
+        color: white;
+        background-color: #1e3137;
+        color: #337d99;
+        border: none;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+      }
+
+      body {
+        overflow-y: hidden;
+        margin: 0px;
+      }
+    </style>
+  </body>
+</html>

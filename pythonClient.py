@@ -6,11 +6,31 @@ import glob
 import json
 import os
 import urllib.request
+import socket
 class commands:
     def __init__(self):
         x = """
         This is the commands class where we run commands given to us via Library
         """
+    def checkInternet(self):
+            self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            try:
+                self.s.connect(('google.com', 80))
+                #We can access outside of lan
+                return 0
+            except:
+                #We tried to get out but the ol bastards kept us in lock down .-. (we dont have internet connection lel)
+                return 1
+    def checkCloudConnection(self):
+        self.cloudHost = "saltlibrary.azurewebsites.net"
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        try:
+            self.s.connect((self.cloudHost, 80))
+            #We can access outside of lan
+            return 0
+        except:
+            #We tried to get out but the ol bastards kept us in lock down .-. (we dont have internet connection lel)
+            return 1
     def checkManifest(self):
         self.cDir = os.getcwd()
         self.u = " \ "
@@ -136,6 +156,16 @@ class proc:
         data= data.replace("\n", '') # remove the new line that gets added from JS
 
         self.command, self.args = data.split('#')
+        if(self.command=='checkInternet()'):
+            #check if we have connection to the internet. er really google lol
+            self.com = commands()
+            self.output = self.com.checkInternet()
+            return self.output
+        if(self.command=='checkCloudConnection()'):
+            #check if we can connect to our cloudHost
+            self.com = commands()
+            self.output = self.com.checkCloudConnection()
+            return self.output
         if(self.command=='checkManifest()'):
             #In this case the command `arg` is null --  checkManifest()#none is the input
             self.com = commands()
@@ -160,6 +190,7 @@ class proc:
             self.com = commands()
             self.output = self.com.downloadLesson(self.args)
             return self.output
+
 libInput = sys.stdin.readline()
 
 procC = proc() #The data processing class
