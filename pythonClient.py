@@ -71,7 +71,7 @@ class commands:
                 self.currentFile = self.files[self.newFiles]
                 self.fileUrl = "https://raw.githubusercontent.com/thoward02/library/master/"+str(self.files[self.newFiles])
                 urllib.request.urlretrieve(self.fileUrl, str(os.getcwd()+"/"+str(self.files[self.newFiles])))
-                print(200)
+                print("##"+str(200))
             os.remove(str(os.getcwd())+"/manifest.tmp")
             return 0 #Everything is all updated and good to go!
         except:
