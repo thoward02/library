@@ -3,6 +3,46 @@
 <head>
   <title> -- Library -- </title>
   <script type="text/javascript" src="mainPage.js"></script>
+
+  <script resason="this is bull shit I dunno why I made it but hey it looks neat" type='text/javascript'>
+    function mainP(){
+      elem = document.getElementById("start");
+
+      r = 98
+      g = 193
+      b = 195
+      function changeColor(){
+        if(r < "68") {
+          clearInterval(bcolor);
+          rcolor = setInterval(reverseColor, 20)
+        } else {
+          r = r - 1
+          g = g - 2
+          b = b- 2
+          console.log(elem.style.backgroundColor)
+          elem.style.backgroundColor = "rgb("+r+","+g+","+b+")"
+        }
+      }
+      function reverseColor(){
+        if(r > "98") {
+          //console.log("dear god captain")
+          clearInterval(rcolor)
+          bcolor = setInterval(changeColor, 20)
+        } else {
+
+          r = r + 1
+          g = g + 2
+          b = b + 2
+          elem.style.backgroundColor = "rgb("+r+","+g+","+b+")"
+        }
+      }
+      bcolor = setInterval(changeColor, 20)
+      //rcolor = setInterval(reverseColor, 20)
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+        mainP();
+    })
+  </script>
   <!--Our system buttons -->
   <script type="text/javascript">
     //const {ipcRenderer} = require('electron');
@@ -15,7 +55,11 @@
 
     })
   </script>
-
+  <!-- Styling -->
+   <link href="assets/Quicksand-Medium.ttf" rel="stylesheet">
+   <link href="assets/Quicksand-Light.ttf" rel="stylesheet">
+   <link href="assets/Quicksand-Bold.ttf" rel="stylesheet">
+   <link href="assets/Quicksand-Regular.ttf" rel="stylesheet">
 </head>
 
 <body>
@@ -31,7 +75,7 @@
         <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="yellow" />
       </svg>
     </div>
-    <h id='libTitle'>Library</h>
+    <strong id='libTitle'>Library</strong>
   </div>
   <div id='startPage'>
       <div id='startPageContent'>
@@ -202,6 +246,9 @@
     background-color: #337d99;
     color: #1e3137;
   }
+  #libTitle {
+    font-family: 'Quicksand', sans-serif;
+  }
   #body {
     display: none;
     padding-top: 0px;
@@ -241,6 +288,7 @@
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
   }
   body {
+    font-family: 'Quicksand', sans-serif;
     color: #337d99;
     margin : 0px;
     border-radius: 20px;
