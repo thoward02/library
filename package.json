@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 {
   "name": "library",
   "version": "0.6.1",
@@ -27,33 +27,3 @@
     }
   }
 }
-=======
-{
-  "name": "library",
-  "version": "0.6.0",
-  "description": "This is a program designed to provide teaching materials to all, in various subjects.",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "author": "THoward02",
-  "license": "ISC",
-  "dependencies": {
-    "electron-packager": "^11.2.0",
-    "npm": "^5.8.0"
-  },
-  "devDependencies": {
-    "electron": "^1.8.4"
-  },
-  "manifest" : {
-    "description" : "yes I added this here, so i can update files based off of the manifest below <3",
-    "files" : {
-      "1" : "main.js",
-      "2" : "main.html",
-      "3" : "mainPage.js",
-      "4" : "package.json",
-      "5" : "pythonClient.py"
-    }
-  }
-}
->>>>>>> 28739a44bec83f1cc276053f2ec8d3917b062641
