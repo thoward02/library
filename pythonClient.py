@@ -48,7 +48,7 @@ class commands:
         with open(str(os.getcwd()+"/manifest.tmp"), "r") as jsonFile:
             self.data = json.load(jsonFile)
         self.newVersion = self.data["version"]
-        
+
         if(self.newVersion==self.currentVersion):
             #It's up to date
             os.remove(os.getcwd()+"/manifest.tmp")
@@ -78,6 +78,26 @@ class commands:
             return 0 #Everything is all updated and good to go!
         except:
             return 1 #We failed
+    def checkForFirstOpen(self):
+        with open("package.json", "r") as self.jsonFile:
+            self.jsonData = json.load(self.jsonFile) #We could probably drop mem usage here if we really needed it.
+            self.firstRun = self.jsonData["options"]["firstOpen"]
+        if(self.firstRun=="True"):
+            return 0 #This is the users first time opening the program
+        if(self.firstRun=="False"):
+            return 1 #This is not her first time ;>
+    def writeFirstOpen(self):
+        try:
+            with open("package.json", "r") as self.jsonFile:
+                self.jsonData = json.load(self.jsonFile)
+            self.jsonFile.close()
+            self.jsonData["options"]["firstOpen"] = "False"
+            with open("package.json", "w") as self.jsonFile:
+                json.dump(self.jsonData, self.jsonFile, indent = 4)
+            self.jsonFile.close()
+            return 0
+        except:
+            return 1
     def checkManifest(self):
         self.cDir = os.getcwd()
         self.u = " \ "
@@ -221,6 +241,15 @@ class proc:
         if(self.command=="updateFiles()"):
             self.com = commands()
             self.output = self.com.updateFiles()
+            return self.output
+        if(self.command=="writeFirstOpen()"):
+            #opens package.json and tells the script that the program has already been started
+            self.com = commands()
+            self.output = self.com.writeFirstOpen()
+            return self.output #returns 0 if json was written.
+        if(self.command=="checkForFirstOpen()"):
+            self.com = commands()
+            self.output = self.com.checkForFirstOpen()
             return self.output
         if(self.command=='checkManifest()'):
             #In this case the command `arg` is null --  checkManifest()#none is the input

@@ -3,8 +3,16 @@ const {ipcRenderer} = require('electron');
 var sys = require('sys');
 var exec = require('child_process').exec;
 function startUp(){
+  document.getElementById('startPage').style.display = "flex"
+  document.getElementById('libTitle').style.display = "block"
   //Here is where we will be adding the intro page for Library
   document.getElementById('start').addEventListener('click', function(){
+    try {clearInterval(rcolor);}
+    catch(error){console.log(error);}
+    try{clearInterval(bcolor);}
+    catch(error){console.log(error);}
+    var writeFirstOpen = exec("py pythonClient.py");
+    writeFirstOpen.stdin.write("writeFirstOpen()#none"+"\n");
     document.getElementById('startPage').style.display = "none";
     document.getElementById('body').style.display = "flex";
     document.body.style.overflowY = "scroll"
@@ -12,15 +20,29 @@ function startUp(){
     main();
   })
 }
-
 function main() {
   //check for a manifest.json for downloaded lessons
+  try {
+    //Just to check if the elements are still there
+    try {clearInterval(rcolor);}
+    catch(error){console.log(error);}
+    try{clearInterval(bcolor);}
+    catch(error){console.log(error);}
+    try{document.getElementById('startPage').style.display = "none";}
+    catch(error){console.log(error)} //I put the display seperate because I could see it tossing another error
+    document.getElementById('body').style.display = "flex";
+    document.body.style.overflowY = "scroll"
+    document.getElementById('libTitle').style.display = "none";
+  }
+  catch(error){
+    console.log(error);
+  }
   var checkForLessons = exec("py pythonClient.py"); //On windows we can change this out to a compiled .exe of the program later -- We don't need to check if it fails or not really :shrug:
   checkForLessons.stdout.on('data', function(data){
     if(data==1) {
       // There is no manifest implying either the user deleted it like a dick (or is forcing the program to reinstall it) or this is a first run of the Program
       // lets just tell the user there is no manifest and ask if he wants to download it
-      document.getElementById('details').innerHTML = "You don't seem to have a manifest, let us download one from our servers!";
+      document.getElementById('details').innerHTML = "You don't seem to have a manifest.\n Let us download one from our servers!";
       document.getElementById('main').innerHTML = "Manifest";
       checkForLessons.stdout.end(); //End the old pythonClient since we're done with it ((we ended it on the python side, but we're gonna do it again juuuuuust to make sure))
       var downloadManifest = exec("py pythonClient.py");
@@ -178,8 +200,18 @@ function main() {
 
 }
 document.addEventListener('DOMContentLoaded', function() {
-    startUp();
-
-
+  var checkForFirstOpen = exec("py pythonClient.py");
+  checkForFirstOpen.stdout.on('data', function(data){
+    console.log(data)
+    if(data==0) {
+      //Run through first run
+      startUp();
+    }
+    if(data==1) {
+      //Run through main without start up
+      main()
+    }
+  });
+  checkForFirstOpen.stdin.write("checkForFirstOpen()#none"+"\n");
 
 });
