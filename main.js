@@ -7,7 +7,7 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require('path');
 var mainWindow = null
 const createMainWindow = () => {
-  mainWindow = new BrowserWindow({width: 1000, height: 705, frame: false, resizable: false, backgroundColor: '#2e2c29' });
+  mainWindow = new BrowserWindow({width: 1000, height: 705, frame: false, resizable: false, backgroundColor: '#1e3137' });
   mainWindow.loadURL(require('url').format({
     pathname: path.join(__dirname, 'main.html'), //Our main page where we're gonna load data etc etc
     protocol: 'file:',
@@ -20,7 +20,7 @@ const createMainWindow = () => {
 
 function runCheck(){
   //checkForInternet
-  mainWindow = new BrowserWindow({width: 500, height: 200, frame: false, resizable: false,backgroundColor: '#2e2c29'})
+  mainWindow = new BrowserWindow({width: 500, height: 200, frame: false, resizable: false,backgroundColor: '#1e3137'})
   mainWindow.loadURL(require('url').format({
     pathname: path.join(__dirname, 'loading.html'), //Our main page where we're gonna load data etc etc
     protocol: 'file:',
