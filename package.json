@@ -1,6 +1,6 @@
 {
     "name": "library",
-    "version": "0.6.5",
+    "version": "0.6.6",
     "description": "This is a program designed to provide teaching materials to all, in various subjects.",
     "main": "main.js",
     "scripts": {
@@ -27,6 +27,6 @@
         }
     },
     "options": {
-        "firstOpen": "True"
+        "firstOpen": "False"
     }
 }
