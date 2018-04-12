@@ -74,16 +74,16 @@ class commands:
                 self.fileUrl = "https://raw.githubusercontent.com/thoward02/library/master/"+str(self.files[self.newFiles])
                 urllib.request.urlretrieve(self.fileUrl, str(os.getcwd()+"/"+str(self.files[self.newFiles])))
 
-            os.remove(str(os.getcwd())+"/manifest.tmp")
+            #os.remove(str(os.getcwd())+"/manifest.tmp")
 
         except:
             return 1 #We failed
         try:
-            for self.assetFiles in self.files:
+            for self.newFiles in self.assetFiles:
                 #The file name can be grabbed via print(self.files[self.newFiles])
-                self.currentFile = self.files[self.newFiles]
-                self.fileUrl = "https://raw.githubusercontent.com/thoward02/library/master/assets/"+str(self.files[self.newFiles])
-                urllib.request.urlretrieve(self.fileUrl, str(os.getcwd()+"/"+str(self.files[self.newFiles])))
+                self.currentFile = self.assetFiles[self.newFiles]
+                self.fileUrl = "https://raw.githubusercontent.com/thoward02/library/master/assets/"+str(self.assetFiles[self.newFiles])
+                urllib.request.urlretrieve(self.fileUrl, str(os.getcwd()+"/assets/"+str(self.assetFiles[self.newFiles])))
 
             os.remove(str(os.getcwd())+"/manifest.tmp")
             return 0 #Everything is all updated and good to go!
