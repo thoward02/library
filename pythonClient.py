@@ -66,12 +66,23 @@ class commands:
             self.data = json.load(jsonFile)
         #print(self.data)
         self.files = self.data["manifest"]["files"]
-
+        self.assetFiles = self.data["manifest"]["assets"]
         try:
             for self.newFiles in self.files:
                 #The file name can be grabbed via print(self.files[self.newFiles])
                 self.currentFile = self.files[self.newFiles]
                 self.fileUrl = "https://raw.githubusercontent.com/thoward02/library/master/"+str(self.files[self.newFiles])
+                urllib.request.urlretrieve(self.fileUrl, str(os.getcwd()+"/"+str(self.files[self.newFiles])))
+
+            os.remove(str(os.getcwd())+"/manifest.tmp")
+
+        except:
+            return 1 #We failed
+        try:
+            for self.assetFiles in self.files:
+                #The file name can be grabbed via print(self.files[self.newFiles])
+                self.currentFile = self.files[self.newFiles]
+                self.fileUrl = "https://raw.githubusercontent.com/thoward02/library/master/assets/"+str(self.files[self.newFiles])
                 urllib.request.urlretrieve(self.fileUrl, str(os.getcwd()+"/"+str(self.files[self.newFiles])))
 
             os.remove(str(os.getcwd())+"/manifest.tmp")
