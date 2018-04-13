@@ -1,6 +1,6 @@
 {
     "name": "library",
-    "version": "0.6.7",
+    "version": "0.6.8",
     "description": "This is a program designed to provide teaching materials to all, in various subjects.",
     "main": "main.js",
     "scripts": {
@@ -24,16 +24,15 @@
             "4": "package.json",
             "5": "pythonClient.py",
             "6": "loading.html"
-          },
-          "assets" : {
-            "file1" : "Comfortaa-Regular.ttf",
-            "file2" : "Quicksand-Regular.ttf",
-            "file3" : "Quicksand-Medium.ttf",
-            "file4" : "Comfortaa-Bold.ttf"
-            }
-
+        },
+        "assets": {
+            "file1": "Comfortaa-Regular.ttf",
+            "file2": "Quicksand-Regular.ttf",
+            "file3": "Quicksand-Medium.ttf",
+            "file4": "Comfortaa-Bold.ttf"
+        }
     },
     "options": {
-        "firstOpen": "False"
+        "firstOpen": "True"
     }
 }
