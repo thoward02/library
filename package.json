@@ -24,16 +24,16 @@
             "4": "package.json",
             "5": "pythonClient.py",
             "6": "loading.html"
-          },
-          "assets" : {
-            "file1" : "Comfortaa-Regular.ttf",
-            "file2" : "Quicksand-Regular.ttf",
-            "file3" : "Quicksand-Medium.ttf",
-            "file4" : "Comfortaa-Bold.ttf"
-            }
-
+        },
+        "assets": {
+            "file1": "Comfortaa-Regular.ttf",
+            "file2": "Quicksand-Regular.ttf",
+            "file3": "Quicksand-Medium.ttf",
+            "file4": "Comfortaa-Bold.ttf"
+        }
     },
     "options": {
-        "firstOpen": "True"
+        "firstOpen": "False",
+        "note" : "the text above can be 'True' or 'False'. False puts you to home screen upon start, True gives you the start up screen. Make sure theyre uppercase letters please and ty"
     }
 }
