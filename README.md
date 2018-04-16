@@ -1,3 +1,4 @@
+
 # library
 This is a project founded by SALT, designed to bring teaching materials to the public.
 It is an open source program built in electron and python, using cloud hosting to distribute lessons. Within the program we have topics, (such as Programing) that users can look into and study from. We hope to be able to offer tutorials and guides over a large range of subjects within the future, while also letting users create their own lessons. You can find the raw lessons [here]("https://github.com/thoward02/lessons"), we're still working on everything so be patient ;>
@@ -10,9 +11,39 @@ Once everything is installed run `npm start` or `electron .` to start the progra
 If you have issues email me at thoward20@jcss.us
 
 # Modding
-So if you look at our Lessons repo you'll see that we have a "Example Lessons" lesson, but you can't access it via the main program. That's because if you look at your `manifest.json` you'll see that there is no notation about an example lesson. That's quite an easy fix, just add this argument to your json file:
+So if you look at our Lessons repo you'll see that we have a "Example Lessons" lesson, but you can't access it via the main program. That's because if you look at your `manifest.json` you'll see that there is no notation about an example lesson. That's quite an easy fix, just change your json file to:
 ```
-"Example_Lesson" : {
+{
+  "Python": {
+      "Basics_Of_Python":{
+        "main" : "main.html",
+        "mainControl" : "jsMain.js",
+        "file1" : "Python_Basics.html",
+        "file2" : "Functions_In_Python.html",
+        "file3" : "Loops_In_Python.html"
+
+      },
+      "discordBot": {
+        "main" : "main.html",
+        "mainControl" : "jsMain.js",
+        "file1" : "gettingYourToken.html",
+        "file2" : "writingFirstBot.html",
+        "file3" : "understandingAsync.html",
+        "file4" : "basics.html"
+      }
+    },
+  "javascript": {
+      "basics": {
+        "mainControl" : "jsMain.js",
+        "main" : "main.html",
+        "file1": "jsBasics.html",
+        "file2" : "editingHtml.html",
+        "file3" : "jsFunctions.html",
+        "file4" : "jsLoops.html"
+      }
+
+    }
+},"Example_Lesson" : {
   "Example": {
     "main": "main.html",
     "mainControl": "jsMain.js",
