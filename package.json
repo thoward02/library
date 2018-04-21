@@ -33,7 +33,7 @@
         }
     },
     "options": {
-        "firstOpen": "False",
+        "firstOpen": "True",
         "note" : "the text above can be 'True' or 'False'. False puts you to home screen upon start, True gives you the start up screen. Make sure theyre uppercase letters please and ty"
     }
 }
