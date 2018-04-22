@@ -194,7 +194,7 @@ class commands:
         self.server = "saltlibrary.azurewebsites.net" #Local host for now due to testing
         topic, lesson  = lessonName.split(":")
 
-        self.url = "https://"+self.server+'/'+topic+"/"+lesson+"/"
+        self.url = "https://"+self.server+'/'+topic+"/"+lesson+"/" # https://saltlibrary.azurewebsites.net/Python/Basics_Of_Python/
         self.cDir = os.getcwd()
         self.u = " \ "
         self.u = self.u.replace(' ', '')
@@ -218,9 +218,10 @@ class commands:
         try:
             for items in jsonData[topic][lesson]:
                 if(jsonData[topic][lesson][items] != None):
-                    self.path2 = self.path + str(jsonData[topic][lesson][items])
-
-                    self.file = urllib.request.urlretrieve(self.url+str(jsonData[topic][lesson][items]), self.path2)
+                    if(items != "description"):
+                        self.path2 = self.path + str(jsonData[topic][lesson][items])
+                        #print(self.url+str(jsonData[topic][lesson][items]))
+                        self.file = urllib.request.urlretrieve(self.url+str(jsonData[topic][lesson][items]), self.path2)
             return 0
         except:
             return 1

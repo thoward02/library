@@ -3,8 +3,11 @@ const {ipcRenderer} = require('electron');
 var sys = require('sys');
 var exec = require('child_process').exec;
 function startUp(){
-  document.getElementById('startPage').style.display = "flex"
+
+  document.getElementById('startPage').style.display = "block"
   document.getElementById('libTitle').style.display = "block"
+  try{document.getElementById('body').style.display="none";}
+  catch(error){console.log(error);}
   //Here is where we will be adding the intro page for Library
   document.getElementById('start').addEventListener('click', function(){
     try {clearInterval(rcolor);}
@@ -14,8 +17,8 @@ function startUp(){
     var writeFirstOpen = exec("py pythonClient.py");
     writeFirstOpen.stdin.write("writeFirstOpen()#none"+"\n");
     document.getElementById('startPage').style.display = "none";
-    document.getElementById('body').style.display = "flex";
-    document.body.style.overflowY = "scroll"
+    document.getElementById('body').style.display = "block";
+    //document.body.style.overflowY = "hidden";
     document.getElementById('libTitle').style.display = "none";
     main();
   })
@@ -30,8 +33,8 @@ function main() {
     catch(error){console.log(error);}
     try{document.getElementById('startPage').style.display = "none";}
     catch(error){console.log(error)} //I put the display seperate because I could see it tossing another error
-    document.getElementById('body').style.display = "flex";
-    document.body.style.overflowY = "scroll"
+    document.getElementById('body').style.display = "block";
+    //document.body.style.overflowY = "scroll"
     document.getElementById('libTitle').style.display = "none";
   }
   catch(error){
@@ -62,27 +65,42 @@ function main() {
       document.getElementById("details").innerHTML = "Loading the Manifest"
       var getManifestData = exec("py pythonClient.py");
       getManifestData.stdout.on('data', function(data){
-
         data = JSON.parse(data)
+        //data = JSON.stringify(data);
         var mainDiv = document.getElementById("mainCont")
         //mainDiv.id = "mainDiv"
         //make our main div
         var mainButDiv = document.createElement("div")
         mainDiv.appendChild(mainButDiv)
+        var topicDiv = document.createElement("div")
+        topicDiv.id = "topicDiv"
+        mainButDiv.appendChild(topicDiv)
 
         for (var topics in data){
 
+
           //each topics in this list is a topic we have
-          var topicDiv = document.createElement("div")
-          topicDiv.id = "topicDiv"
-          mainButDiv.appendChild(topicDiv)
           //Buttons
 
           //Make our topics div
+          console.log(topics)
+          var button = document.createElement("div")
+          var butttonTextDiv = document.createElement('div')
+          var butttonText = document.createElement('p')
+          butttonText.style.textAlign = "center"
+          butttonText.style.fontWeight = "bold";
 
-          var button = document.createElement("button")
+          butttonTextDiv.appendChild(butttonText);
+          butttonText.innerHTML = topics
+          var buttonImage = document.createElement('img')
+          buttonImage.src = "assets/"+topics+".png"
+          buttonImage.style.height = "100px"
+          buttonImage.style.width = "100px"
+          buttonImage.style.paddingLeft = "25px"
+
           topicDiv.appendChild(button);
-          button.innerHTML = topics
+          button.appendChild(butttonText);
+          button.appendChild(buttonImage)
           button.id = topics
           button.className = "buttonsL"
           var lessonsDiv = document.createElement("div")
@@ -90,105 +108,195 @@ function main() {
           lessonsDiv.style.display = "none"
           topicDiv.appendChild(lessonsDiv)
           button.addEventListener("click",  function(y, x = this.id){
+            console.log('started')
+            var body = document.createElement("div");
+            document.getElementById('body').style.position =  "absolute";
+            document.getElementById('body').style.width = "100%";
+            document.getElementById('body').style.zIndex = "-3";
+            document.body.style.overflowX = "hidden";
 
-            x = x + "lessonsDiv"
+            document.body.appendChild(body);
+            body.style.zIndex = "2";
+            body.style.width = "100%";
+            body.style.height = "100%"
+            body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+            //body.style.position = "relative";
+            body.style.left = "0"
+            body.style.marginTop = "20px"
+            body.style.padding = "10%"
+            body.style.display = "block";
+            //create content div
+            var cBody = document.createElement("div");
+            cBody.id = "cBody"
+            body.appendChild(cBody);
+            cBody.style.width = "80%";
+            cBody.style.height = "550px";
+            cBody.style.overflowY = "auto"
+            cBody.style.backgroundColor = "#1e3137";
+            //Fill Div
+            var topContent = document.createElement("div");
+            cBody.appendChild(topContent);
+            topContent.style.margin = "0px";
+            topContent.style.width  = "100%";
+            var exitButton = "<div style='width:100%;'><svg id='exitDiv' class= 'systemButtons'height='20' width='20'><circle id='exit'cx='10'cy='10' r='10' stroke-color='red' width='3' fill='red' /></svg></div>"
+            cBody.innerHTML = exitButton;
+            var exitButton = document.getElementById("exitDiv");
+            exitButton.style.zIndex = '5'
+            exitButton.style.padding = "5px";
+            exitButton.style.float = "left";
+            exitButton.style.position = "relative"
+            exitButton.addEventListener('click', function(){console.log('exiting');cBody.remove();body.remove();document.getElementById('body').style.zIndex = "1";});//
+            var title = document.createElement("div")
+            title.id = "lessonTitle"
+            title.innerHTML = x
+            title.style.position = "relative"
+            title.style.zIndex = "4";
+            title.style.paddingTop = "0"
+            title.style.letterSpacing = "10px";
+            title.style.fontWeight = "bold";
+            title.style.fontSize = "40px";
+            title.style.width = "60%"
+            title.style.marginLeft = "20%";
+            title.style.marginTop = "26px";
+            title.style.color = "#337d99"
+            title.style.textAlign = "center";
+            title.style.fontFamily = "Kiona"
+            cBody.appendChild(title)
+            var lnBrk = document.createElement('hr')
+            cBody.appendChild(lnBrk);
+            lnBrk.style.width = "80%"
+            lnBrk.style.color = "#337d99"
+            dataDiv = document.createElement("div");
+            document.getElementById('cBody').appendChild(dataDiv);
+            // Add main content
 
-            if(document.getElementById(x).style.display=="none"){
-              document.getElementById(x).style.display = "block";
+            for (var lessons in data[x]) {
+              //console.log(lessons)
+              if(lessons=="data"){try{}catch(error){}}//I did this so we can skip the data blocks
+              else{
+                lessonStripped = lessons.replace(/_/g, " ")
+                //console.log(lessons) Use this var to pull data from manifest
+                //var cBody = document.getElementById("cBody");
+                //Create the div for the lesson
+                var lessonDiv = document.createElement("div");
+                cBody.appendChild(lessonDiv)
 
+                //Populate Div
+                var lessonTitles = document.createElement('p')
+                lessonDiv.appendChild(lessonTitles)
+                lessonTitles.innerHTML = lessonStripped;
+                lessonTitles.style.fontWeight = "bold";
+                lessonTitles.style.fontSize = "20px";
+                lessonTitles.style.paddingLeft = "10px";
+                lessonTitles.style.textDecoration = "underline";
+                var lessonDetails = document.createElement("p")
+                lessonDiv.appendChild(lessonDetails);
+                lessonDetails.innerHTML = data[x][lessons]["description"];
+                lessonDetails.style.paddingLeft = "10px";
+                lessonDetails.style.fontSize = "16px";
+                lessonDetails.style.fontFamily = "Comfortaa";
+                var button = document.createElement("button")
 
-            }else {
-              document.getElementById(x).style.display = "none";
+                button.id = x+":"+lessons
+                button.className = "lessonButtons"
+                button.addEventListener('click', function(x, name = this.id){
+                  //When lesson button clicked, load download//open page
+                  document.getElementById('cBody').remove()
+                  var cBody = document.createElement("div");
+                  cBody.id = "cBody"
+                  body.appendChild(cBody);
+                  cBody.style.width = "80%";
+                  cBody.style.height = "25%";
+                  cBody.style.overflowY = "auto"
+                  cBody.style.backgroundColor = "#1e3137";
+                  //Create text
+                  var text = document.createElement('p')
+                  text.style.textAlign = "center";
+                  text.style.fontSize = "20px";
+                  text.style.fontWeight = "bold";
+                  cBody.appendChild(text)
+                  //Tell the user we're loading
+
+                  var nameStripped = name.replace(/_/g, " ")
+                  var nameStripped = nameStripped.replace(/:/g, " ")
+                  text.innerHTML = "Loading "+nameStripped
+                  var checkForLesson = exec("py pythonClient.py");
+                  checkForLesson.stdout.on('data', function(data){
+                    //Check if the lesson is on disk
+                    if(data==0){
+                      // The lesson is on file
+                      checkForLesson.stdout.end()
+                      //open lesson "name"
+                      var lessonData = name.split(":")
+                      var topic = lessonData[0]
+                      var lesson = lessonData[1]
+                      //console.log('switching windows')
+                      ipcRenderer.send("loadLesson()", topic, lesson)
+                    }
+                    if(data==1){
+
+                      //The lesson is not on file and needs to be downloaded
+                      text.innerHTML = "You don't have this topic on disk, would you like to download it?"
+                      buttonDivs = document.createElement("div")
+                      cBody.appendChild(buttonDivs)
+                      //yes
+                      yesButton = document.createElement('div')
+                      yesButton.innerHTML = "Yes"
+                      yesButton.className = "buttons"
+                      buttonDivs.appendChild(yesButton)
+                      yesButton.addEventListener("click", function(){
+                        var downloadLesson = exec("py pythonClient.py")
+                        downloadLesson.stdout.on('data', function(data){
+                          //Downloading the lesson
+                          console.log("data");
+                          if(data == 1) {
+                            text.innerHTML = "There was an error downloading the lessons!"
+                          }else {
+                            text.innerHTML = "Lesson downloaded, loading the lesson now!"
+                            var lessonData = name.split(":")
+                            var topic = lessonData[0]
+                            var lesson = lessonData[1]
+                            ipcRenderer.send("loadLesson()", topic, lesson);
+                          }
+                        });
+                        var myElements = document.querySelectorAll(".buttons");
+                        for (var i = 0; i < myElements.length; i++) {
+                          myElements[i].style.visibility = "hidden" // So we can load the new page, and if they choose to go back we can re pull it up
+                        }
+                        text.innerHTML = "Downloading your lesson please wait"
+                        console.log("downloadLesson()#"+name)
+                        downloadLesson.stdin.write("downloadLesson()#"+name+"\n")
+
+                      });
+
+                      //no
+                      noButton = document.createElement('div')
+                      noButton.innerHTML = "No"
+                      buttonDivs.appendChild(noButton)
+                      noButton.className = "buttons"
+                      noButton.addEventListener("click", function(){
+                        cBody.remove()
+                        body.remove()
+                        document.getElementById('body').style.zIndex = "4"
+                      });
+                    }
+                  });
+                  checkForLesson.stdin.write("checkForLesson()#"+name+"\n");
+                });
+                var nameStripped = lessons.replace(/_/g, " ")
+                button.innerHTML = "Load " + nameStripped
+                lessonDiv.appendChild(button)
 
             }
+            }
           });
+          //Add the foreground
+          document.getElementById('body').style.zIndex = "-4";
 
 
+          //Add the lessons data to the main page
 
-          //Add the lessons buttons
 
-          for (var lessons in data[topics]) {
-            var buttonDiv = document.createElement('div')
-            lessonsDiv.appendChild(buttonDiv)
-
-            var button = document.createElement("button")
-            button.id = topics+":"+lessons
-            button.className = "lessonButtons"
-            button.addEventListener('click', function(x, name = this.id){
-              //Get rid of the buttons
-              var myElements = document.querySelectorAll(".buttonsL");
-              for (var i = 0; i < myElements.length; i++) {
-                myElements[i].style.visibility = "hidden" // So we can load the new page, and if they choose to go back we can re pull it up
-              }
-              var myElements = document.querySelectorAll(".lessonButtons");
-              for (var i = 0; i < myElements.length; i++) {
-                myElements[i].style.visibility = "hidden" // So we can load the new page, and if they choose to go back we can re pull it up
-              }
-              var nameStripped = name.replace(/_/g, " ")
-
-              document.getElementById("main").innerHTML = "Loading "+nameStripped
-              var checkForLesson = exec("py pythonClient.py");
-              checkForLesson.stdout.on('data', function(data){
-                if(data==0){
-                  checkForLesson.stdout.end()
-                  //open lesson "name"
-                  var lessonData = name.split(":")
-                  var topic = lessonData[0]
-                  var lesson = lessonData[1]
-                  //console.log('switching windows')
-                  ipcRenderer.send("loadLesson()", topic, lesson)
-                }
-                if(data==1){
-
-                  document.getElementById('main').innerHTML = "You don't have this topic on disk, would you like to download it?"
-                  buttonDivs = document.createElement("div")
-                  document.getElementById('mainCont').appendChild(buttonDivs) //need to change this
-                  //yes
-                  yesButton = document.createElement('button')
-                  yesButton.innerHTML = "Yes"
-                  yesButton.className = "buttons"
-                  buttonDivs.appendChild(yesButton)
-                  yesButton.addEventListener("click", function(){
-                    var downloadLesson = exec("py pythonClient.py")
-                    downloadLesson.stdout.on('data', function(data){
-                      console.log("data");
-                      if(data == 1) {
-                        document.getElementById("main").innerHTML = "There was an error downloading the lessons!"
-                      }else {
-                        document.getElementById("main").innerHTML = "Lesson downloaded, loading the lesson now!"
-                        var lessonData = name.split(":")
-                        var topic = lessonData[0]
-                        var lesson = lessonData[1]
-                        ipcRenderer.send("loadLesson()", topic, lesson);
-                      }
-                    });
-                    var myElements = document.querySelectorAll(".buttons");
-                    for (var i = 0; i < myElements.length; i++) {
-                      myElements[i].style.visibility = "hidden" // So we can load the new page, and if they choose to go back we can re pull it up
-                    }
-                    document.getElementById("main").innerHTML = "Downloading your lesson please wait"
-                    document.getElementById("details").innerHTML = "..."
-                    downloadLesson.stdin.write("downloadLesson()#"+name+"\n")
-
-                  });
-                  //no
-                  noButton = document.createElement('button')
-                  noButton.innerHTML = "No"
-                  document.getElementById('mainCont').appendChild(noButton)
-                  noButton.className = "buttons"
-                  noButton.addEventListener("click", function(){
-                    location.reload(); //Just sends us back to the start
-                  });
-
-                }
-              });
-              checkForLesson.stdin.write("checkForLesson()#"+name+"\n");
-            });
-            var nameStripped = lessons.replace(/_/g, " ")
-            button.innerHTML = nameStripped
-            buttonDiv.appendChild(button)
-
-          }
           document.getElementById("main").innerHTML = "Topics"
           document.getElementById('details').innerHTML = "Click on a topic to look at its avalible lessons"
         }
