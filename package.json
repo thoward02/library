@@ -1,6 +1,6 @@
 {
     "name": "library",
-    "version": "0.6.7",
+    "version": "1.0.0",
     "description": "This is a program designed to provide teaching materials to all, in various subjects.",
     "main": "main.js",
     "scripts": {
@@ -29,8 +29,6 @@
             "file1": "Comfortaa-Regular.ttf",
             "file2": "Quicksand-Regular.ttf",
             "file3": "Quicksand-Medium.ttf",
-            "file4": "Comfortaa-Bold.ttf",
-            "file4": "Javascript.png",
             "file4": "Python.png"
         }
     },
