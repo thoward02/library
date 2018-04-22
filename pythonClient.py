@@ -207,11 +207,15 @@ class commands:
 
         self.manifestFileSys = self.cDirF+"/lessons/manifest.json" #Path to manifest
         self.path = self.cDirF+"/lessons/"+topic+"/"+lesson+"/"
+        self.parentPath = self.cDirF+"/lessons/"+topic+"/"
+        self.isParentPath = os.path.isdir(self.parentPath)
         self.isPath = os.path.isdir(self.path)
         if(self.isPath==True):
             pass
         if(self.isPath==False):
-            os.mkdir(self.cDirF+"/lessons/"+topic+"/")
+            if(self.isParentPath==False):
+                os.mkdir(self.cDirF+"/lessons/"+topic+"/")
+
             os.mkdir(self.cDirF+"/lessons/"+topic+"/"+lesson+"/")
         with open(self.manifestFileSys, "r") as jsonFile:
             jsonData = json.load(jsonFile)
