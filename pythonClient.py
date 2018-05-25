@@ -22,7 +22,7 @@ class commands:
                 #We tried to get out but the ol bastards kept us in lock down .-. (we dont have internet connection lel)
                 return 1
     def checkCloudConnection(self):
-        self.cloudHost = "saltlibrary.azurewebsites.net"
+        self.cloudHost = "raw.githubusercontent.com"#"saltlibrary.azurewebsites.net" Until we get a new cloud service, this is going to be hosted by github
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             self.s.connect((self.cloudHost, 80))
@@ -137,7 +137,7 @@ class commands:
             self.manifest = 1 #There is no manifest so we return 1 basically saying false.
         return self.manifest
     def downloadManifest(self):
-        self.server = "saltlibrary.azurewebsites.net" #Local host for now due to testing
+        self.server = "raw.githubusercontent.com/thoward02/lessons/master" #Local host for now due to testing
         self.url = "https://"+self.server+"/manifest.json"
         self.cDir = os.getcwd()
         self.u = " \ "
@@ -191,7 +191,7 @@ class commands:
         if(self.checkForFolder==False):
             return 1
     def downloadLesson(self, lessonName):
-        self.server = "saltlibrary.azurewebsites.net" #Local host for now due to testing
+        self.server = "raw.githubusercontent.com/thoward02/lessons/master" #Local host for now due to testing
         topic, lesson  = lessonName.split(":")
 
         self.url = "https://"+self.server+'/'+topic+"/"+lesson+"/" # https://saltlibrary.azurewebsites.net/Python/Basics_Of_Python/
