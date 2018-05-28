@@ -74,6 +74,7 @@ function main() {
         mainDiv.appendChild(mainButDiv)
         var topicDiv = document.createElement("div")
         topicDiv.id = "topicDiv"
+        topicDiv.style.margin = "10%"; //To pull the elements away from the wall <3
         mainButDiv.appendChild(topicDiv)
 
         for (var topics in data){
@@ -85,24 +86,25 @@ function main() {
           //Make our topics div
           console.log(topics)
           var button = document.createElement("div")
+          button.className = "buttonsL"
+          button.style.marginTop = "10px";
+          button.style.marginLeft = "2%";
           var butttonTextDiv = document.createElement('div')
           var butttonText = document.createElement('p')
           butttonText.style.textAlign = "center"
           butttonText.style.fontWeight = "bold";
-
           butttonTextDiv.appendChild(butttonText);
           butttonText.innerHTML = topics
           var buttonImage = document.createElement('img')
           buttonImage.src = "assets/"+topics+".png"
-          buttonImage.style.height = "100px"
-          buttonImage.style.width = "100px"
+          buttonImage.style.height = "50%";
+          buttonImage.style.width = "66.666666%"
           buttonImage.style.paddingLeft = "25px"
 
           topicDiv.appendChild(button);
           button.appendChild(butttonText);
           button.appendChild(buttonImage)
           button.id = topics
-          button.className = "buttonsL"
           var lessonsDiv = document.createElement("div")
           lessonsDiv.id = topics+"lessonsDiv"
           lessonsDiv.style.display = "none"
@@ -110,6 +112,7 @@ function main() {
           button.addEventListener("click",  function(y, x = this.id){
             console.log('started')
             var body = document.createElement("div");
+            //body == The black background C;
             document.getElementById('body').style.position =  "absolute";
             document.getElementById('body').style.width = "100%";
             document.getElementById('body').style.zIndex = "-3";
@@ -123,16 +126,19 @@ function main() {
             //body.style.position = "relative";
             body.style.left = "0"
             body.style.marginTop = "20px"
-            body.style.padding = "10%"
+            body.style.paddingTop = "50px"
             body.style.display = "block";
             //create content div
             var cBody = document.createElement("div");
             cBody.id = "cBody"
             body.appendChild(cBody);
-            cBody.style.width = "80%";
-            cBody.style.height = "550px";
+            cBody.style.width = "90%";
+            cBody.style.height = "80%";
             cBody.style.overflowY = "auto"
             cBody.style.backgroundColor = "#1e3137";
+            cBody.style.margin = "5%";
+            cBody.style.marginTop = "0%";
+
             //Fill Div
             var topContent = document.createElement("div");
             cBody.appendChild(topContent);
@@ -154,7 +160,7 @@ function main() {
             title.style.paddingTop = "0"
             title.style.letterSpacing = "10px";
             title.style.fontWeight = "bold";
-            title.style.fontSize = "40px";
+            title.style.fontSize = "50px";
             title.style.width = "60%"
             title.style.marginLeft = "20%";
             title.style.marginTop = "26px";
@@ -162,6 +168,13 @@ function main() {
             title.style.textAlign = "center";
             title.style.fontFamily = "Kiona"
             cBody.appendChild(title)
+            var tDetail = document.createElement("div"); //Why use divs? Less hassel with that new line and formatting that <p> gives us. Don't ask, but just switch things around and see how it looks with <p> instead of div
+            tDetail.innerHTML = data[x]["data"]["description"];
+            tDetail.style.textAlign = "center";
+            tDetail.style.padding = "2%";
+            tDetail.style.fontSize = "20px";
+            tDetail.style.fontFamily = "Comfortaa";
+            cBody.appendChild(tDetail);
             var lnBrk = document.createElement('hr')
             cBody.appendChild(lnBrk);
             lnBrk.style.width = "80%"
@@ -186,14 +199,14 @@ function main() {
                 lessonDiv.appendChild(lessonTitles)
                 lessonTitles.innerHTML = lessonStripped;
                 lessonTitles.style.fontWeight = "bold";
-                lessonTitles.style.fontSize = "20px";
+                lessonTitles.style.fontSize = "25px";
                 lessonTitles.style.paddingLeft = "10px";
                 lessonTitles.style.textDecoration = "underline";
                 var lessonDetails = document.createElement("p")
                 lessonDiv.appendChild(lessonDetails);
                 lessonDetails.innerHTML = data[x][lessons]["description"];
                 lessonDetails.style.paddingLeft = "10px";
-                lessonDetails.style.fontSize = "16px";
+                lessonDetails.style.fontSize = "20px";
                 lessonDetails.style.fontFamily = "Comfortaa";
                 var button = document.createElement("button")
 
@@ -205,14 +218,17 @@ function main() {
                   var cBody = document.createElement("div");
                   cBody.id = "cBody"
                   body.appendChild(cBody);
-                  cBody.style.width = "80%";
-                  cBody.style.height = "25%";
+                  body.style.paddingTop = "0px";
+                  cBody.style.width = "100%";
+                  cBody.style.height = "100%";
                   cBody.style.overflowY = "auto"
                   cBody.style.backgroundColor = "#1e3137";
+                  cBody.style.margin = "0";
                   //Create text
                   var text = document.createElement('p')
                   text.style.textAlign = "center";
                   text.style.fontSize = "20px";
+                  text.style.paddingTop = "22%"
                   text.style.fontWeight = "bold";
                   cBody.appendChild(text)
                   //Tell the user we're loading
@@ -231,6 +247,7 @@ function main() {
                       var topic = lessonData[0]
                       var lesson = lessonData[1]
                       //console.log('switching windows')
+                    
                       ipcRenderer.send("loadLesson()", topic, lesson)
                     }
                     if(data==1){

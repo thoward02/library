@@ -85,11 +85,12 @@
     })
   </script>
   <!--Our system buttons -->
-  <script type="text/javascript">
+  <script reason="systemButtonsStuff" type="text/javascript">
     //const {ipcRenderer} = require('electron');
     function addButtons(){
       document.getElementById('exit').addEventListener('click', function(){ipcRenderer.send('exit()');}); //Exit
       document.getElementById('minimize').addEventListener('click', function(){ipcRenderer.send('minimize()');}); //Min
+      document.getElementById('maximize').addEventListener('click', function(){ipcRenderer.send('maximize()');}); //Max
     }
     document.addEventListener('DOMContentLoaded', function(){
       addButtons();
@@ -112,6 +113,9 @@
       <svg id="exit" class= "systemButtons"height="16" width="16">
         <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="red" />
       </svg>
+      <svg id="maximize" class= "systemButtons"height="16" width="16">
+        <circle cx="8"cy="8" r="8" stroke-color="green" width='3' fill="green" />
+      </svg>
       <svg id="minimize" class= "systemButtons"height="16" width="16">
         <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="yellow" />
       </svg>
@@ -120,12 +124,12 @@
   </div>
   <div id='startPage'>
       <div id='startPageContent'>
-      <div id='startPageText'>
-        <p> The library is a program dedicated to further the knowledge of you! With this program we hope to provide easy access to information and lessons for all! Go ahead and click Get Started to download our manifest of lessons!</p>
-      </div>
-      <div id='startButtonDiv'>
-        <button id='start'>Get Started </button>
-      </div>
+        <div id='startPageText'>
+          <p> The library is a program dedicated to further the knowledge of you! With this program we hope to provide easy access to information and lessons for all! Go ahead and click Get Started to download our manifest of lessons!</p>
+        </div>
+        <div id='startButtonDiv'>
+          <button id='start'>Get Started </button>
+        </div>
     </div>
   </div>
 
@@ -197,6 +201,7 @@
     margin-left: 10%;
   }
   #startPageText {
+    margin-top: 5%;
     font-size:24px;
     width: 80%;
     margin-left: 10%;
@@ -236,7 +241,7 @@
     margin-bottom: 4px;
     margin-right: 4px;
     overflow-y: auto !important;
-    height: 660px;
+    height: 100%;
   }
   #main {
     font-size: 42px;
@@ -329,11 +334,11 @@
   }
   ::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-      border-radius: 10px;
+
       background-color: #487684;
   }
   ::-webkit-scrollbar-thumb {
-      border-radius: 10px;
+
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
   }
   body {

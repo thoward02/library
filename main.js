@@ -7,7 +7,7 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require('path');
 var mainWindow = null
 const createMainWindow = () => {
-  mainWindow = new BrowserWindow({width: 1000, height: 705, frame: false, resizable: false, backgroundColor: '#1e3137' });
+  mainWindow = new BrowserWindow({width: 1000, height: 705, frame: false, resizable: true, backgroundColor: '#1e3137' });
   mainWindow.loadURL(require('url').format({
     pathname: path.join(__dirname, 'main.html'), //Our main page where we're gonna load data etc etc
     protocol: 'file:',
@@ -50,6 +50,10 @@ ipcMain.on('main()', (event) => {
 //System Functions
 ipcMain.on('exit()', (event) => {
   app.quit();
+});
+ipcMain.on('maximize()', (event) => {
+  if(mainWindow.isMaximized()){mainWindow.unmaximize();}
+  else{mainWindow.maximize();}
 });
 ipcMain.on('minimize()', (event) => {
   mainWindow.minimize();

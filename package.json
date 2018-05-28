@@ -1,6 +1,6 @@
 {
     "name": "library",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "This is a program designed to provide teaching materials to all, in various subjects.",
     "main": "main.js",
     "scripts": {
@@ -33,6 +33,9 @@
         }
     },
     "options": {
+        "notes": {
+          "firstOpen" : "This option if set to True (Note the capital it's very important), will display the welcome splash screen. After the first run, the program will set it to False, again note the captial. Changing it from True // False may cause a crash :C"
+        },
         "firstOpen": "True"
     }
 }
