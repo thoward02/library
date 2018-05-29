@@ -34,8 +34,8 @@
     },
     "options": {
         "notes": {
-          "firstOpen" : "This option if set to True (Note the capital it's very important), will display the welcome splash screen. After the first run, the program will set it to False, again note the captial. Changing it from True // False may cause a crash :C"
+            "firstOpen": "This option if set to True (Note the capital it's very important), will display the welcome splash screen. After the first run, the program will set it to False, again note the captial. Changing it from True // False may cause a crash :C"
         },
-        "firstOpen": "True"
+        "firstOpen": "False"
     }
 }

@@ -217,12 +217,19 @@ class commands:
                 os.mkdir(self.cDirF+"/lessons/"+topic+"/")
 
             os.mkdir(self.cDirF+"/lessons/"+topic+"/"+lesson+"/")
+            os.mkdir(self.cDirF+"/lessons/"+topic+"/"+lesson+"/assets/")#Create the assets dir
         with open(self.manifestFileSys, "r") as jsonFile:
             jsonData = json.load(jsonFile)
         try:
+            #Get assets
+            for items in jsonData[topic][lesson]["assets"]:
+                self.path2 = self.path+"/assets/"+ str(jsonData[topic][lesson]["assets"][items])
+                #print(self.url+str(jsonData[topic][lesson][items]))
+                self.file = urllib.request.urlretrieve(self.url+str(jsonData[topic][lesson]["assets"][items]), self.path2)
+            #Get the lessons
             for items in jsonData[topic][lesson]:
                 if(jsonData[topic][lesson][items] != None):
-                    if(items != "description"):
+                    if((items != "description") and (items != "assets")):
                         self.path2 = self.path + str(jsonData[topic][lesson][items])
                         #print(self.url+str(jsonData[topic][lesson][items]))
                         self.file = urllib.request.urlretrieve(self.url+str(jsonData[topic][lesson][items]), self.path2)
