@@ -223,9 +223,10 @@ class commands:
         try:
             #Get assets
             for items in jsonData[topic][lesson]["assets"]:
-                self.path2 = self.path+"/assets/"+ str(jsonData[topic][lesson]["assets"][items])
+                self.path2 = self.path+"assets/"+ str(jsonData[topic][lesson]["assets"][items])
+                self.url2 = self.url + "assets/"
                 #print(self.url+str(jsonData[topic][lesson][items]))
-                self.file = urllib.request.urlretrieve(self.url+str(jsonData[topic][lesson]["assets"][items]), self.path2)
+                self.file = urllib.request.urlretrieve(self.url2+str(jsonData[topic][lesson]["assets"][items]), self.path2)
             #Get the lessons
             for items in jsonData[topic][lesson]:
                 if(jsonData[topic][lesson][items] != None):
@@ -294,7 +295,7 @@ class proc:
             self.output = self.com.checkLesson(self.args)
             return self.output
         if(self.command=="downloadLesson()"):
-            #downloadLesson()#python:basics
+            #downloadLesson()#python:Basics_Of_Python
             self.com = commands()
             self.output = self.com.downloadLesson(self.args)
             return self.output
