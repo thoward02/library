@@ -1,0 +1,182 @@
+<!-- main.html, the main page for the basic python lessons -->
+<html>
+<head>
+  <title> --Python Main -- </title>
+  <script type='text/javascript' src='jsMain.js'></script>
+  <script type="text/javascript">
+    function addButtons(){
+      document.getElementById('exit').addEventListener('click', function(){ipcRenderer.send('exit()');}); //Exit
+      document.getElementById('minimize').addEventListener('click', function(){ipcRenderer.send('minimize()');}); //Min
+      document.getElementById('maximize').addEventListener('click', function(){ipcRenderer.send('maximize()');}); //Max
+    }
+    document.addEventListener('DOMContentLoaded', function(){addButtons();});
+  </script>
+</head>
+<body>
+  <div id="top-border">
+    <div id="topButtons">
+    <svg id="exit" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="red" />
+    </svg>
+    <svg id="maximize" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="green" width='3' fill="green" />
+    </svg>
+    <svg id="minimize" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="yellow" />
+    </svg>
+  </div>
+  </div>
+  <div class="body">
+    <div id="lesson">
+      <p id='topicTitle'>Python - The Basics</p>
+      <div id='lessonButtons'>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div id='bottom-border'><img id="mainMenu" src="assets/home.svg"></img></div>
+  <style>
+    #topButtons {
+      position: sticky;
+      float: top;
+      width: 100%;
+      height: 25px;
+    }
+    .systemButtons {
+      position: sticky;
+      position: -webkit-sticky;
+      margin-top: 2px;
+      padding-top: 10px;
+      -webkit-app-region: no-drag !important;
+      float: left;
+      padding-left: 5px;
+    }
+    #top-border {
+      top: 0;
+      position: sticky;
+      width: 100%;
+      height: 4px;
+      background-color: #1e3137;
+      color: #337d99;
+      text-align: center;
+      font-size: 40px;
+      padding-bottom: 40px;
+      -webkit-app-region: drag;
+    }
+
+    #bottom-border{
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      height: 70px;
+      background-color: #1e3137;
+    }
+
+    #topicTitle {
+      text-align: center;
+      font-family: Kiona;
+      font-size: 50px;
+      color: #337d99;
+      font-weight: bold;
+    }
+    #mainMenu {
+      height: 100%;
+      margin-left: 45%;
+      width: 10%;
+      background-color: #1e3137;
+      color: #337d99;
+      -webkit-app-region: no-drag;
+
+    }
+    #mainMenu:hover {
+      background-color: #204d5e;
+    }
+
+    #bottom-border{
+      width: 100%;
+      height: 60px;
+      background-color: #1e3137;
+      margin-top: 0;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    #main {
+      font-size: 42px;
+      color: #62c1c3;
+      text-align: center;
+      padding-top: 5%;
+    }
+    #lessons {
+      color: #337d99;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .lessonTitle {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 25%;
+    }
+    .body {
+      height: 90%;
+      margin-top: 0%;
+      background-color:  #204d5a;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      overflow-y: auto !important;
+    }
+    #lessonButtons {
+      margin-left: 10%;
+    }
+    .buttons {
+      float: left;
+      color: #337d99;
+      margin-top: 10%;
+      margin-right: 15%;
+      background-color: #1e3137;
+      font-family: Kiona;
+      overflow:hidden;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      width: 150px;
+      height: 200px;
+    }
+    .buttons:hover {
+      background-color: #204d5e;
+    }
+    .vertical.scrollbar {
+      height: 480px !important;
+    }
+    ::-webkit-scrollbar {
+        width: 12px;
+        background-color: #1e3137;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #487684;
+    }
+
+    ::-webkit-scrollbar-thumb {
+
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+    body {
+      color: #337d99;
+      margin : 0px;
+      overflow-y: hidden;
+    }
+
+    @font-face {
+      font-family: Kiona;
+      src: url(assets/Kiona-Regular.ttf);
+      }
+    @font-face {
+      font-family: Comfortaa;
+      src: url(assets/Comfortaa-Regular.ttf);
+    }
+  </style>
+</body>
+
+</html>

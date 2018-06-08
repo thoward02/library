@@ -1,0 +1,200 @@
+<!-- Basics for python - pythonBasics.html -->
+<html>
+<head>
+  <title> Python  Basics </title>
+  <!--Back button script -->
+  <script type = "text/javascript">var mainWindow = "main.html";var nextLesson = "Functions_In_Python.html";document.addEventListener('DOMContentLoaded', function(){document.getElementById('backButton').addEventListener('click', function(){window.location=mainWindow;}); document.getElementById('nextButton').addEventListener('click', function(){window.location = nextLesson;}); }); </script>
+  <!-- System buttons -->
+  <script type="text/javascript">
+    function addButtons(){
+      const {ipcRenderer} = require('electron');
+      document.getElementById('exit').addEventListener('click', function(){ipcRenderer.send('exit()');}); //Exit
+      document.getElementById('minimize').addEventListener('click', function(){ipcRenderer.send('minimize()');}); //Min
+      document.getElementById('maximize').addEventListener('click', function(){ipcRenderer.send('maximize()');}); //Max
+    }
+    document.addEventListener('DOMContentLoaded', function(){addButtons();});
+  </script>
+</head>
+<body>
+  <div id="top-border">
+    <div id="topButtons">
+    <svg id="exit" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="red" />
+    </svg>
+    <svg id="maximize" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="green" width='3' fill="green" />
+    </svg>
+    <svg id="minimize" class= "systemButtons"height="16" width="16">
+      <circle cx="8"cy="8" r="8" stroke-color="red" width='3' fill="yellow" />
+    </svg>
+  </div>
+
+  </div>
+  <div id='main'>
+
+    <p id='headTitle'> Variables in Python </p>
+    <h class='header'> Variables, so what are they? </h>
+
+    <p id="para"> Let us think back to our early days of algerbra, when we had to solve the problem "10 = X + 6". In our schools we were told that "X" represents the unknown, that it is a placeholder for an unknown value, that it could be anything at all. Now of course we all know in our little example here X can only equal "4", but what about when we really don't know the value? What if "X = Y / Z"? Well, the solution could be anything, for we could solve that equation so many ways by plugging in values for X, Y and Z!
+    <p id="para"> Let's not get wrapped up in that though, for we're here to dive into Python! With that said, how does a variable relate to programming? Well a variable in programming *like it does in algerbra* represents the unknown, or a value that can not be deterimed at this time. This could be the number of hot dogs sold in a day, or what a boy wants for dinner. Well how do we define a variable in python? </p>
+    <p id="para"> <code class="singleCode"> X = 10</code>  This is how we define variables in python. Imagine a box infront of you, and with a big marker write X. After you're done inscribing, put the number 10 inside of it! What you've created in your head is a variable, you created a box and named it X, and put the data 10 inside of it.  In programming we create variables (little boxes of data) and use them deal with data we may not know, or make typing easier on us. </p>
+    <p id="para"> There are 4 different types of data that can be put into a variable. Ints, Floats, Strings, and Lists. *Okay I said 3 different types, but keep in mind there are more types, but I won't go into all of them for you can find that on your own. </p>
+    <h class='header'> Ints </h>
+    <p id="para"> Ints, or other wise known as integers, are approximent numbers. Implying that they are numbers without a decimal, for example "1, 2, 3, 4". Like the code above they are just designated by saying <code class='singleCode'> variablename = number </code>. </p>
+    <h class='header'> Floats </h>
+    <p id="para"> Floats are percise numbers, using decimals. For example "1.0, 5.2, 2.4444, 6.456"! As always you state <code class='singleCode'> variablename = float </code>, and an example of this <code class='singleCode'> x = 6.22 </code>. If we were to check the value of X, we would get that X indeed equals 6.22 </p>
+
+
+  </div>
+  <div id='bottom-border'><img id='backButton' src="assets/back.png"></img><img id='nextButton' src="assets/forward.png"></img></div>
+
+  <style>
+
+    #headTitle {
+      font-size: 45px;
+      font-weight: bold;
+      font-family: Kiona !important;
+    }
+    #main {
+      width: 100%;
+      height: 90%;
+      background-color: #204d5a;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      padding-bottom: 20%;
+      overflow-y: auto !important;
+
+
+    }
+    #para {
+      display: block;
+      width: 80%;
+      margin-left: 5%;
+      font-size: 18px;
+      font-family: Comfortaa;
+    }
+    #headTitle {
+      text-align: center;
+      padding: right: 10px;
+    }
+    #topButtons {
+      position: sticky;
+      float: top;
+      width: 100%;
+      height: 25px;
+    }
+    .systemButtons {
+      position: sticky;
+      position: -webkit-sticky;
+      margin-top: 2px;
+      padding-top: 10px;
+      -webkit-app-region: no-drag !important;
+      float: left;
+      padding-left: 5px;
+    }
+    #top-border {
+      top: 0;
+      position: sticky;
+      width: 100%;
+      height: 10px;
+      background-color: #1e3137;
+      color: #337d99;
+      text-align: center;
+      font-size: 40px;
+      padding-bottom: 40px;
+      -webkit-app-region: drag;
+
+    }
+    #bottom-border{
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      height: 70px;
+      background-color: #1e3137;
+    }
+    #nextButton, #backButton  {
+      position: sticky;
+      background-color: inherit;
+      border: 0;
+      margin-left: 0;
+      margin-top: 0;
+      width: 100px;
+      height : 100%;
+      font-size: 14px;
+      color: #337d99;
+      font-family: Kiona;
+    }
+    #nextButton:hover, #backButton:hover {
+      background-color: #265e73;
+    }
+    .header {
+      font-size: 40px;
+      font-weight: bold;
+      font-family: Kiona;
+      margin-left: 2.5%;
+    }
+    .leftBreak {
+      border-top-color: #183a47;
+      border: 0;
+      border-top: 5px solid;
+      width:  5%;
+      padding-left: 5px;
+      display: block;
+      float: left;
+    }
+
+    .blockCode {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin-right: 40px;
+        margin-left: 40px;
+        min-height: 10px;
+        display: block;
+        background-color: #1e3137;
+        color: #337d99;
+      }
+      .singleCode {
+      background-color: #1e3137;
+      color: #337d99;
+      }
+    .vertical.scrollbar {
+      height: 480px !important;
+    }
+    ::-webkit-scrollbar {
+        width: 12px;
+        background-color: #1e3137;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #487684;
+    }
+
+    ::-webkit-scrollbar-thumb {
+
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+      }
+
+    body {
+      margin: 0px;
+      color: #45a5ca;
+      background-color: #337d99;
+      overflow-y: hidden;
+    }
+    @font-face {
+      font-family: Kiona;
+      src: url(assets/Kiona-Regular.ttf);
+      }
+    @font-face {
+      font-family: Comfortaa;
+      src: url(assets/Comfortaa-Regular.ttf);
+    }
+     p, h {
+        margin-left: 10px;
+    }
+    code {
+      font-family: Comfortaa;
+    }
+  </style>
+<body>
+</html>

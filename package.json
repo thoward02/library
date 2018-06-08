@@ -1,6 +1,6 @@
 {
     "name": "library",
-    "version": "1.0.1",
+    "version": "1.0.4",
     "description": "This is a program designed to provide teaching materials to all, in various subjects.",
     "main": "main.js",
     "scripts": {
@@ -27,15 +27,18 @@
         },
         "assets": {
             "file1": "Comfortaa-Regular.ttf",
-            "file2": "Quicksand-Regular.ttf",
-            "file3": "Quicksand-Medium.ttf",
-            "file4": "Python.png"
+            "file2": "Comfortaa-Bold.ttf",
+            "file3": "Comfortaa-Light.ttf",
+            "file4" : "Kiona-Regular.ttf",
+            "file5" : "Kiona-Itallic.ttf",
+            "file6": "Python.png",
+            "file7" : "Javascript.png"
         }
     },
     "options": {
         "notes": {
             "firstOpen": "This option if set to True (Note the capital it's very important), will display the welcome splash screen. After the first run, the program will set it to False, again note the captial. Changing it from True // False may cause a crash :C"
         },
-        "firstOpen": "False"
+        "firstOpen": "True"
     }
 }

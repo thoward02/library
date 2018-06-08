@@ -1,0 +1,44 @@
+{
+  "Python": {
+    "data":{"description" : "Python is a programming language that is primarily used as an introduction to coding! Usually it is used to run back end operations such as servers! Below is what we have to teach for python!"},
+      "Basics_Of_Python":{
+        "assets" : {
+          "file1": "Comfortaa-Bold.ttf",
+          "file2": "Comfortaa-Regular.ttf",
+          "file3": "Comfortaa-Light.ttf",
+          "file4" : "Kiona-Itallic.ttf",
+          "file5" : "Kiona-Regular.ttf"
+        },
+        "description" : "Inside here is the basics of python; From functions to variables we will be trying to cover the basics!",
+        "main" : "main.html",
+        "mainControl" : "jsMain.js",
+        "file1" : "Variables_In_Python.html",
+        "file2" : "Functions_In_Python.html",
+        "file3" : "Loops_In_Python.html",
+        "file3" : "Classes_In_Python.html"
+
+      },
+      "discordBot": {
+        "description" : "Here you will learn how to create a Discord Bot, using the discord.py python api! Discord is a chat platform created for gamers!",
+        "main" : "main.html",
+        "mainControl" : "jsMain.js",
+        "file1" : "gettingYourToken.html",
+        "file2" : "writingFirstBot.html",
+        "file3" : "understandingAsync.html",
+        "file4" : "basics.html"
+      }
+    },
+  "Javascript": {
+
+    "data":{"description" : "JavaScript is a programming language (usually) based inside of your browsers! It is what makes the webpage buttons click! Below is what we have to teach for JS"},
+      "basics": {
+        "mainControl" : "jsMain.js",
+        "main" : "main.html",
+        "file1": "jsBasics.html",
+        "file2" : "editingHtml.html",
+        "file3" : "jsFunctions.html",
+        "file4" : "jsLoops.html"
+      }
+
+    }
+}

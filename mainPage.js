@@ -7,39 +7,29 @@ function startUp(){
   document.getElementById('startPage').style.display = "block"
   document.getElementById('libTitle').style.display = "block"
   try{document.getElementById('body').style.display="none";}
-  catch(error){console.log(error);}
+  catch(error){pass}
   //Here is where we will be adding the intro page for Library
   document.getElementById('start').addEventListener('click', function(){
     try {clearInterval(rcolor);}
-    catch(error){console.log(error);}
+    catch(error){}
     try{clearInterval(bcolor);}
-    catch(error){console.log(error);}
+    catch(error){}
     var writeFirstOpen = exec("py pythonClient.py");
     writeFirstOpen.stdin.write("writeFirstOpen()#none"+"\n");
     document.getElementById('startPage').style.display = "none";
     document.getElementById('body').style.display = "block";
-    //document.body.style.overflowY = "hidden";
     document.getElementById('libTitle').style.display = "none";
     main();
   })
 }
 function main() {
   //check for a manifest.json for downloaded lessons
-  try {
-    //Just to check if the elements are still there
-    try {clearInterval(rcolor);}
-    catch(error){console.log(error);}
-    try{clearInterval(bcolor);}
-    catch(error){console.log(error);}
-    try{document.getElementById('startPage').style.display = "none";}
-    catch(error){console.log(error)} //I put the display seperate because I could see it tossing another error
-    document.getElementById('body').style.display = "block";
-    //document.body.style.overflowY = "scroll"
-    document.getElementById('libTitle').style.display = "none";
-  }
-  catch(error){
-    console.log(error);
-  }
+  try{document.getElementById('startPage').style.display = "none";}
+  catch(error){} //I put the display seperate because I could see it tossing another error
+  document.getElementById('body').style.display = "block";
+  document.getElementById('libTitle').style.display = "none";
+  try{document.getElementById('start').remove();document.getElementById('libTitle').remove();}
+  catch(error){}
   var checkForLessons = exec("py pythonClient.py"); //On windows we can change this out to a compiled .exe of the program later -- We don't need to check if it fails or not really :shrug:
   checkForLessons.stdout.on('data', function(data){
     if(data==1) {
@@ -247,7 +237,7 @@ function main() {
                       var topic = lessonData[0]
                       var lesson = lessonData[1]
                       //console.log('switching windows')
-                    
+
                       ipcRenderer.send("loadLesson()", topic, lesson)
                     }
                     if(data==1){

@@ -3,87 +3,91 @@
 <head>
   <title> -- Library -- </title>
   <script type="text/javascript" src="mainPage.js"></script>
-  <script reason="lets make the text flash dude" type="text/javascript">
-    //brigtht color =  rgb(51, 125, 153);
-    //dark color =  rgb(30, 49, 55);
-    function main1(){
-      elem1 = document.getElementById("start");
-      console.log('s')
-      r1 = 98
-      g1 = 193
-      b1 = 195
-      function changeColor1(){
-        if(r1 < "68") {
-          clearInterval(bcolor1);
-          rcolor1 = setInterval(reverseColor1, 20)
-        } else {
-        r1= r1 - 1
-          g1 = g1 - 2
-          b1 = b1- 2
-          //console.log(elem.style.backgroundColor)
-          elem1.style.background= "linear-gradient(145deg, rgba("+r1+","+g1+","+b1+",1), rgba(51, 128, 153, 1) 90%) " //linear-gradient(180deg, rgba(30,49,55,1), rgba(38,47,57,1) 90%), linear-gradient(90deg, rgba(30,49,55,0.8), rgba(38,47,57,0.6) 90%);
-          //console.log(elem1.style.color)
-        }
+  <script type="text/javascript" reason="This is the class for all of our flashing text">
+    class flashyStuff {
+      //Oh yeah im a god at naming C:
+      constructor(time, element) {
+        //brigtht color =  rgb(51, 125, 153);
+        //dark color =  rgb(30, 49, 55);
+        this.time = parseInt(time); //The interval at which we wish to flash
+        this.elem = document.getElementById(element); //The element that we're binding the flash to.
       }
-      function reverseColor1(){
-        if(r1 > "98") {
-          //console.log("dear god captain")
-          clearInterval(rcolor1)
-          bcolor1 = setInterval(changeColor1, 20)
-        } else {
+      startFlashLinearBackground(){
+        const elem1 = this.elem;
+        const time1 = this.time;
+        var rcolor1 = "";
+        var bcolor1 = "";
+        var r1 = 98;
+        var g1 = 193;
+        var b1 = 195;
+        function changeColor1(){
+          if(r1 < "68"){
+            clearInterval(bcolor1);
+            rcolor1 = setInterval(reverseColor1, time1)
+          }else {
+            r1 = r1 - 1;
+            g1 = g1 - 2;
+            b1 = b1 - 2;
 
-        r1= r1 + 1
-          g1 = g1 + 2
-          b1 = b1 + 2
-          elem1.style.background = "linear-gradient(145deg, rgba("+r1+","+g1+","+b1+",1), rgba(51, 125, 153, 1) 90%) "
+            elem1.style.background = "linear-gradient(145deg, rgba("+r1+","+g1+","+b1+",1), rgba(51, 128, 153, 1) 90%) " //linear-gradient(180deg, rgba(30,49,55,1), rgba(38,47,57,1) 90%), linear-gradient(90deg, rgba(30,49,55,0.8), rgba(38,47,57,0.6) 90%);
+
+          }
         }
+        function reverseColor1(){
+          if(r1 > "98") {
+            clearInterval(rcolor1);
+            bcolor1 = setInterval(changeColor1, time1)
+          } else {
+            r1 = r1 + 1;
+            g1 = g1 + 2;
+            b1 = b1 + 2;
+            elem1.style.background = "linear-gradient(145deg, rgba("+r1+","+g1+","+b1+",1), rgba(51, 125, 153, 1) 90%) "
+          }
+
+        }
+        bcolor1 = setInterval(changeColor1, time1);
       }
-      bcolor1 = setInterval(changeColor1, 20)
-      //rcolor = setInterval(reverseColor, 20)
+      startFlashColor(){
+          const elem = this.elem;
+          const time = this.time;
+          var rcolor = "";
+          var bcolor = "";
+          var r = 98
+          var g = 193
+          var b = 195
+          function changeColor(){
+            if(r < "68") {
+              clearInterval(bcolor);
+              rcolor = setInterval(reverseColor, time);
+            } else {
+              r = r - 1
+              g = g - 2
+              b = b- 2
+              //console.log(elem.style.backgroundColor)
+              elem.style.color = "rgb("+r+","+g+","+b+")"
+            }
+          }
+          function reverseColor(){
+
+            if(r > "98") {
+              //console.log("dear god captain")
+              clearInterval(rcolor)
+              bcolor = setInterval(changeColor, time)
+            } else {
+
+              r = r + 1;
+              g = g + 2;
+              b = b + 2;
+              elem.style.color = "rgb("+r+","+g+","+b+")";
+            }
+          }
+          bcolor = setInterval(changeColor, time);
+
+      }
     }
-    document.addEventListener('DOMContentLoaded', function(){
-      main1();
-    })
   </script>
-  <script resason="this is bull shit I dunno why I made it but hey it looks neat" type='text/javascript'>
-    function mainP(){
-      elem = document.getElementById("libTitle");
-
-      r = 98
-      g = 193
-      b = 195
-      function changeColor(){
-        if(r < "68") {
-          clearInterval(bcolor);
-          rcolor = setInterval(reverseColor, 50)
-        } else {
-          r = r - 1
-          g = g - 2
-          b = b- 2
-          //console.log(elem.style.backgroundColor)
-          elem.style.color = "rgb("+r+","+g+","+b+")"
-        }
-      }
-      function reverseColor(){
-        if(r > "98") {
-          //console.log("dear god captain")
-          clearInterval(rcolor)
-          bcolor = setInterval(changeColor, 50)
-        } else {
-
-          r = r + 1
-          g = g + 2
-          b = b + 2
-          elem.style.color = "rgb("+r+","+g+","+b+")"
-        }
-      }
-      bcolor = setInterval(changeColor, 50)
-      //rcolor = setInterval(reverseColor, 20)
-    }
-    document.addEventListener('DOMContentLoaded', function(){
-        mainP();
-    })
-  </script>
+  <script type="text/javascript" reason="title flash">document.addEventListener('DOMContentLoaded', function(){const buttonFlash = new flashyStuff(20, "start");buttonFlash.startFlashLinearBackground();console.log(buttonFlash.startFlashLinearBackground.time)})</script>
+  <script type="text/javascript" reason="title flash">document.addEventListener('DOMContentLoaded', function(){const titleFlash = new flashyStuff(50, "libTitle");titleFlash.startFlashColor();})</script>
   <!--Our system buttons -->
   <script reason="systemButtonsStuff" type="text/javascript">
     //const {ipcRenderer} = require('electron');
@@ -97,11 +101,7 @@
     });
 
   </script>
-  <!-- Styling -->
-   <link href="assets/Quicksand-Medium.ttf" rel="stylesheet">
-   <link href="assets/Quicksand-Light.ttf" rel="stylesheet">
-   <link href="assets/Quicksand-Bold.ttf" rel="stylesheet">
-   <link href="assets/Quicksand-Regular.ttf" rel="stylesheet">
+
 </head>
 
 <body>
@@ -180,7 +180,7 @@
     margin-top: 0px;
   }
   #startPageContent {
-    margin-top: 50px;
+    margin-top: this.timepx;
   }
   #startPage {
     padding-top: 5%;
@@ -358,10 +358,7 @@
     font-family: Comfortaa;
     src: url(assets/Comfortaa-Regular.ttf);
   }
-  @font-face {
-    font-family: Anders;
-    src: url(assets/Anders.ttf)
-  }
+
   </style>
 
 </body>
